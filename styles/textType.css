@@ -1,0 +1,19 @@
+@import url("https://fonts.googleapis.com/css2?family=Nunito+Sans&display=swap");
+
+.f-nunito-sans {
+  font-family: "Nunito Sans", sans-serif;
+}
+
+/* SIZE */
+.fs-24 {
+  font-size: 24px;
+}
+
+/* WEIGHT */
+.fw-700 {
+  font-weight: 700;
+}
+
+.color-white {
+  color: white;
+}

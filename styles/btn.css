@@ -1,0 +1,9 @@
+.btn-disable {
+  background-color: #dadada !important;
+  color: #88888f !important;
+}
+
+.btn-enable {
+  background-color: #6379f4 !important;
+  color: #ffffff !important;
+}
