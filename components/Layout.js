@@ -1,16 +1,17 @@
 import Head from "next/head";
-import Navbar from "./module/Navbar";
+import Footer from "./Footer";
+import Header from "./Header";
 
 export default function Layout(props) {
   return (
-    <div className="container-fluid">
+    <div>
       <Head>
         <title>{props.title}</title>
         <link rel="icon" href="/favicon2.png" />
       </Head>
-      <Navbar />
-
-      {props.children}
+      <Header />
+      <div className="my-5">{props.children}</div>
+      <Footer />
     </div>
   );
 }

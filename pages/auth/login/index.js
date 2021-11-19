@@ -41,9 +41,7 @@ export default function Login() {
         router.push("/");
       })
       .catch((err) => {
-        console.log("test");
-        console.log(err);
-        console.log(err.msg);
+        toast.error(err.response.data.msg);
       });
   };
 

@@ -43,10 +43,7 @@ export default function ResetPassword() {
         // router.push("/login");
       })
       .catch((err) => {
-        // toast.error(err.data);
-        // console.log("test");
-        // console.log(err);
-        // console.log(err.msg);
+        toast.error(err.response.data.msg);
       });
   };
 

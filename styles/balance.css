@@ -1,0 +1,18 @@
+.balance-out {
+  height: auto;
+}
+
+.balance-box {
+  background-color: #6379f4;
+  border-radius: 20px;
+}
+
+.balance-btn div {
+  border-radius: 10px;
+  border: white 1px solid;
+  color: white;
+  background-color: rgba(255, 255, 255, 0.2);
+}
+
+.balance__topup {
+}

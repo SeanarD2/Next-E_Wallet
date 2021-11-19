@@ -1,0 +1,15 @@
+.side-box {
+  background-color: white;
+  border-radius: 20px;
+  box-shadow: 0px 4px 20px 0px #0000000d;
+
+  /* box-shadow: 0px 2px 40px #000000; */
+}
+
+.side-content {
+  height: 100%;
+}
+
+.side-content div span {
+  margin-left: 2rem !important;
+}

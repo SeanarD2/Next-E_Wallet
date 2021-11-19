@@ -1,0 +1,47 @@
+.header-box {
+  height: 140px;
+  background-color: white;
+  box-shadow: 0px 4px 20px 0px #0000000d;
+
+  border-radius: 0px 0px 25px 25px;
+}
+
+.header-content {
+  display: flex;
+  align-content: center;
+  align-items: center;
+  justify-content: space-between;
+  height: 100%;
+}
+
+.header-logo {
+  height: 40px;
+}
+
+.header__user-info {
+  display: flex;
+  align-items: center;
+  flex-direction: row;
+}
+
+.user-img {
+  display: block;
+  height: 52px;
+  width: 52px;
+  /* background-color: aqua; */
+  border-radius: 10px;
+  margin-right: 1.5rem;
+}
+
+.user-img img {
+  height: 52px;
+  width: 52px;
+  object-fit: cover;
+  border-radius: 10px;
+}
+
+.user-info__name-numb {
+  display: flex;
+  flex-direction: column;
+  margin-right: 1rem;
+}

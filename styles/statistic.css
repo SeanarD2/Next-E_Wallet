@@ -1,0 +1,39 @@
+.statistic-out {
+  /* height: 100%; */
+}
+
+.statistic-box {
+  background-color: white;
+  border-radius: 20px;
+  box-shadow: 0px 4px 20px 0px #0000000d;
+}
+
+.arrow-up-to-down {
+  transform: scale(1, -1);
+}
+
+.history-box {
+  background-color: white;
+  border-radius: 20px;
+  box-shadow: 0px 4px 20px 0px #0000000d;
+  height: 100%;
+  padding-right: 0px !important;
+}
+
+.history-list__image-user {
+  width: 56px;
+  height: 56px;
+  border: 1px solid black;
+  border-radius: 10px;
+}
+
+.history-out {
+  height: 596px;
+}
+
+.history-box {
+  background-color: white;
+  border-radius: 20px;
+  box-shadow: 0px 4px 20px 0px #0000000d;
+  height: 100%;
+}

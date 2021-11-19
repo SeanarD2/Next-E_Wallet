@@ -1,14 +1,14 @@
-import axios from "axios";
+import axiosDef from "axios";
 import Cookie from "js-cookie";
 
-const axiosApiInstance = axios.create({
+const axios = axiosDef.create({
   // baseURL: "https://zwalet.herokuapp.com",
   baseURL: "http://localhost:3001",
 });
 
 if (Cookie.get("token")) {
   // Add a request interceptor
-  axiosApiInstance.interceptors.request.use(
+  axios.interceptors.request.use(
     function (config) {
       // Do something before request is sent
       config.headers = {
@@ -23,7 +23,7 @@ if (Cookie.get("token")) {
   );
 
   // Add a response interceptor
-  axiosApiInstance.interceptors.response.use(
+  axios.interceptors.response.use(
     function (response) {
       // Any status code that lie within the range of 2xx cause this function to trigger
       // Do something with response data
@@ -43,4 +43,4 @@ if (Cookie.get("token")) {
   );
 }
 
-export default axiosApiInstance;
+export default axios;

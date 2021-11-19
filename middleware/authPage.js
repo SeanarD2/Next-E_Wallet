@@ -3,6 +3,7 @@ import cookie from "next-cookies";
 export function getDataCookie(context) {
   return new Promise((resolve) => {
     let dataCookie = cookie(context);
+    // console.log(dataCookie.token);
     if (dataCookie.token) {
       dataCookie.isLogin = true;
     } else {
