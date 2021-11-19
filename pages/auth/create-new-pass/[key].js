@@ -26,7 +26,7 @@ export async function getServerSideProps(context) {
 export default function CreateNewPass(props) {
   const router = useRouter();
 
-  console.log(router.query.key);
+  // console.log(router.query.key);
 
   const [form, setForm] = useState({
     keysChangePassword: router.query.key,
@@ -36,7 +36,7 @@ export default function CreateNewPass(props) {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log(form);
+    // console.log(form);
     axios
       .patch("/auth/reset-password", form)
       .then((res) => {

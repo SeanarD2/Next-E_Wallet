@@ -5,6 +5,9 @@ import Balance from "components/Dasboard/Balance";
 import Statistic from "components/Dasboard/Statistic";
 import { getDataCookie } from "middleware/authPage";
 import axios from "utils/axios";
+import SearchReceiver from "components/Transfer/SearchReceiver";
+import { useRouter } from "next/router";
+import Amount from "components/Transfer/Amount";
 
 export async function getServerSideProps(context) {
   const dataCookie = await getDataCookie(context);
@@ -17,14 +20,15 @@ export async function getServerSideProps(context) {
     };
   }
 
-  const dataUser = await axios
-    .get(`/user/profile/${dataCookie.id}`, {
+  const dataReceiver = await axios
+    .get(`/user/profile/${dataCookie.receiverId}`, {
       headers: {
         Authorization: `Bearer ${dataCookie.token}`,
       },
     })
     .then((res) => {
       // console.log("THEN");
+      // console.log("DATA", res.data.data);
       return res.data.data;
     })
     .catch((err) => {
@@ -32,21 +36,20 @@ export async function getServerSideProps(context) {
       return [];
     });
   return {
-    props: { dataUser },
+    props: { dataReceiver: dataReceiver },
   };
 }
 
 export default function Dasboard(props) {
-  // console.log(props.dataUser);
+  // console.log(props.dataReceiver);
   return (
     <>
-      <Layout title="Home | Dasboard">
+      <Layout title="Home | Transfer">
         <div className="container">
           <div className="row rp">
-            <Sidebar activePage="menu1" />
+            <Sidebar activePage="menu2" />
             <div className="row col-lg-9 rp">
-              <Balance />
-              <Statistic />
+              <Amount dataReceiver={props.dataReceiver} />
             </div>
           </div>
         </div>

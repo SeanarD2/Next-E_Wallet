@@ -35,20 +35,20 @@ export default function CreatePin() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log(form);
+    // console.log(form);
     axios
       .post("/auth/register", form)
       .then((res) => {
-        console.log(res.data.data);
+        // console.log(res.data.data);
         Cookie.set("token", res.data.data.token);
         Cookie.set("id", res.data.data.id);
 
         // router.push("/main/login");
       })
       .catch((err) => {
-        console.log("test");
-        console.log(err);
-        console.log(err.msg);
+        // console.log("test");
+        // console.log(err);
+        // console.log(err.msg);
       });
   };
 

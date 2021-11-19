@@ -33,7 +33,7 @@ export default function ResetPassword() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log(form);
+    // console.log(form);
     axios
       .post("/auth/forgot-password", form)
       .then((res) => {

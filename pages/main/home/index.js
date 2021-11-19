@@ -23,11 +23,11 @@ export async function getServerSideProps(context) {
       },
     })
     .then((res) => {
-      console.log("THEN");
+      // console.log("THEN");
       return res.data.data;
     })
     .catch((err) => {
-      console.log("CATCH");
+      // console.log("CATCH");
       return [];
     });
   return {
@@ -36,7 +36,7 @@ export async function getServerSideProps(context) {
 }
 
 export default function Home(props) {
-  console.log(process.env.URL_BE);
+  // console.log(process.env.URL_BE);
 
   //TODO CLIENT SIDE RENDERING
   // const [data, setData] = useState([]);
@@ -56,7 +56,7 @@ export default function Home(props) {
   //   getDataUser();
   // }, []);
 
-  console.log(props);
+  // console.log(props);
 
   return (
     <Layout title="Home">

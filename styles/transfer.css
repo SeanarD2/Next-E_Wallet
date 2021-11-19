@@ -1,0 +1,21 @@
+.search-receiver__input {
+  border-radius: 12px;
+  background-color: rgba(58, 61, 66, 0.1);
+  border: none;
+}
+
+.search-receiver__input input {
+  border: none;
+  background-color: rgba(58, 61, 66, 0);
+}
+
+.amont-input {
+  border: none;
+  color: #6379f4;
+}
+
+.amont-input::-webkit-outer-spin-button,
+.amont-input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}

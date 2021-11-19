@@ -35,11 +35,11 @@ export default function SignUp() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log(form);
+    // console.log(form);
     axios
       .post("/auth/register", form)
       .then((res) => {
-        console.log(res.data.data);
+        // console.log(res.data.data);
         toast.success(
           res.data.msg + ", check your email for activation accounts"
         );

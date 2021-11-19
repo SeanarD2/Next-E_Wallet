@@ -8,6 +8,8 @@ import Image from "next/image";
 import { ToastContainer, toast } from "react-toastify";
 import Link from "next/link";
 import Head from "next/head";
+import { login } from "redux/action/user";
+import { connect } from "react-redux";
 
 // ROUTING
 export async function getServerSideProps(context) {
@@ -23,27 +25,48 @@ export async function getServerSideProps(context) {
   return { props: {} };
 }
 
-export default function Login() {
+function Login(props) {
+  console.log(props);
+
   const router = useRouter();
 
   const [form, setForm] = useState({ email: "", password: "" });
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log(form);
-    axios
-      .post("/auth/login", form)
+    // console.log(form);
+    setBtnDisable(true);
+    props
+      .login(form)
       .then((res) => {
-        console.log(res.data.data);
-        Cookie.set("token", res.data.data.token);
-        Cookie.set("id", res.data.data.id);
+        console.log(res);
+        Cookie.set("token", res.value.data.data.token);
+        Cookie.set("id", res.value.data.data.id);
 
-        router.push("/");
+        router.push("/home/dasboard");
       })
       .catch((err) => {
-        toast.error(err.response.data.msg);
+        console.log(err);
+        setBtnDisable(false);
       });
+    // axios
+    //   .post("/auth/login", form)
+    //   .then((res) => {
+    //     // console.log(res.data.data);
+    //     Cookie.set("token", res.data.data.token);
+    //     Cookie.set("id", res.data.data.id);
+
+    //     router.push("/");
+    //   })
+    //   .catch((err) => {
+    //     toast.error(err.response.data.msg);
+    //     setBtnDisable(false);
+    //   });
   };
+
+  useEffect(() => {
+    props.user.isError ? toast.error(props.user.msg) : null;
+  }, [props.user.isError]);
 
   const handleChangeText = (e) => {
     setForm({ ...form, [e.target.name]: e.target.value });
@@ -60,6 +83,9 @@ export default function Login() {
     event.preventDefault();
     toast.error(msg);
   };
+
+  // TODO DISABLE BTN
+  const [btnDisable, setBtnDisable] = useState(false);
 
   return (
     <>
@@ -150,6 +176,8 @@ export default function Login() {
                   ? "btn btn-enable col-12 py-3"
                   : "btn btn-disable col-12 py-3"
               }
+              // {form.email && form.password ? enabled : disabled}
+              disabled={btnDisable}
             >
               Log In
             </button>
@@ -162,3 +190,12 @@ export default function Login() {
     </>
   );
 }
+
+const mapStateToProps = (state) => ({
+  auth: state.auth,
+});
+const mapDispatchToProps = {
+  login,
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(Login);

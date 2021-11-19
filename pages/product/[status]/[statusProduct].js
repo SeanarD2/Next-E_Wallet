@@ -5,8 +5,8 @@ import { useRouter } from "next/router";
 
 export default function Product() {
   const router = useRouter();
-  console.log(process.env.URL_BE);
-  console.log(router.query.status);
+  // console.log(process.env.URL_BE);
+  // console.log(router.query.status);
   return (
     <Layout title="Product Details Status">
       <h1>Page Details Product Status</h1>

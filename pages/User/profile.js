@@ -3,7 +3,7 @@ import Navbar from "components/module/Navbar";
 import Layout from "components/Layout";
 
 export default function profile() {
-  console.log(process.env.URL_BE);
+  // console.log(process.env.URL_BE);
   return (
     <Layout title="Profile">
       <h1>Page Profile</h1>

@@ -5,6 +5,9 @@
 }
 
 /* SIZE */
+.fs-42 {
+  font-size: 42px;
+}
 .fs-40 {
   font-size: 40px;
 }
@@ -35,6 +38,22 @@
   font-weight: 400;
 }
 
+.lh-28 {
+  line-height: 28px;
+}
+
 .color-white {
   color: white;
+}
+
+.color-gray57 {
+  color: #4d4b57;
+}
+
+.color-gray86 {
+  color: #7a7886;
+}
+
+.color-green {
+  color: #1ec15f;
 }

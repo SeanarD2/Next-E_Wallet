@@ -25,18 +25,18 @@ export default function Login() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log(form);
+    // console.log(form);
     axios
       .post("/auth/login", form)
       .then((res) => {
-        console.log(res.data.data);
+        // console.log(res.data.data);
         Cookie.set("token", res.data.data.token, { expires: 7 });
         Cookie.set("id", res.data.data.id, { expires: 7 });
 
         router.push("/main/home");
       })
       .catch((err) => {
-        console.log(err.msg);
+        // console.log(err.msg);
       });
   };
 

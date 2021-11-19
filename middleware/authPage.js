@@ -17,7 +17,7 @@ export function getDataCookie(context) {
 export function unAuthPage(context) {
   return new Promise((resolve) => {
     const dataCookie = cookie(context);
-    console.log(dataCookie);
+    // console.log(dataCookie);
     if (dataCookie.token) {
       return context.res.writeHead(302, {
         Location: "/main/home",
@@ -31,7 +31,7 @@ export function unAuthPage(context) {
 export function authPage(context) {
   return new Promise((resolve) => {
     const dataCookie = cookie(context);
-    console.log(dataCookie);
+    // console.log(dataCookie);
     if (!dataCookie.token) {
       return context.res.writeHead(302, {
         Location: "/auth/login",

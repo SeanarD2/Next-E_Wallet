@@ -13,36 +13,21 @@ export default function Statistic(props) {
   const [listExpense, setListExpense] = useState([]);
   const [listIncome, setListIncome] = useState([]);
 
-  useEffect(() => {
-    axios
-      .get(`/dashboard/${Cookie.get("id")}`)
-      .then((res) => {
-        console.log(res.data.data);
-        setDataBalance(res.data.data);
-      })
-      .catch((err) => {
-        setDataBalance({});
-        console.log(err.response.data.msg);
-      });
-
-    getTransactionHistory();
-  }, []);
-
-  useEffect(() => {
-    console.log(listExpense);
-  }, [listExpense]);
-  useEffect(() => {
-    console.log(labelExpense);
-  }, [labelExpense]);
+  // useEffect(() => {
+  //   console.log(listExpense);
+  // }, [listExpense]);
+  // useEffect(() => {
+  //   console.log(labelExpense);
+  // }, [labelExpense]);
 
   // CHART CONFIG
   const data = {
-    labels: ["Jan", "Feb", "March", "April"],
+    labels: [],
 
     datasets: [
       {
-        label: "Income This Month",
-        data: [1, 2, 3, 1],
+        label: "Income This Week",
+        data: [],
         fill: false,
         backgroundColor: ["rgba(255, 99, 132, 0.2)", "rgba(54, 162, 235, 0.2)"],
         borderColor: ["rgba(255, 99, 132, 1)", "rgba(54, 162, 235, 1)"],
@@ -54,16 +39,34 @@ export default function Statistic(props) {
   const [dataHistory, setDataHistory] = useState([]);
   const getTransactionHistory = () => {
     axios
-      .get("/transaction/history?page=1&limit=2&filter=MONTH")
+      .get("/transaction/history?page=1&limit=5&filter=MONTH")
       .then((res) => {
-        setDataHistory(res.data.data);
         console.log(res.data.data);
+        setDataHistory(res.data.data);
+        // setDataHistory([]);
+
+        // console.log(res.data.data);
       })
       .catch((err) => {
         setDataHistory([]);
         err.response.data.msg;
       });
   };
+
+  useEffect(() => {
+    axios
+      .get(`/dashboard/${Cookie.get("id")}`)
+      .then((res) => {
+        // console.log(res.data.data);
+        setDataBalance(res.data.data);
+      })
+      .catch((err) => {
+        setDataBalance({});
+        // console.log(err.response.data.msg);
+      });
+
+    getTransactionHistory();
+  }, []);
 
   return (
     <div className="statistic-out row rpr mt-3">
@@ -103,25 +106,50 @@ export default function Statistic(props) {
             </Link>
           </div>
           <div className="trans-history my-3">
-            {dataHistory
-              ? dataHistory.map((item, index) => (
-                  <div
-                    key={index}
-                    className="history-list d-flex align-items-center justify-content-between"
-                  >
-                    <div className="history-list__image-user"></div>
-                    <div className="history-list__details-user d-flex flex-column justify-content-evenly col-4">
-                      <span className="fw-700 fs-16 text-truncate ">
-                        Samuel Suhi 123123123
-                      </span>
-                      <span className="fw-400 fs-14">Accept</span>
-                    </div>
-                    <div className="history-list__amount fw-700 fs-16">
-                      +Rp50.000
-                    </div>
+            {dataHistory ? (
+              dataHistory.map((item, index) => (
+                <div
+                  key={index}
+                  className="history-list d-flex align-items-center justify-content-between my-3"
+                >
+                  <div className="history-list__image-user">
+                    <img
+                      src={
+                        item.image
+                          ? "http://localhost:3001"
+                          : "/assets/image/default-profile.jpg"
+                      }
+                      alt="userProfiles"
+                    />
                   </div>
-                ))
-              : ""}
+                  <div className="history-list__details-user d-flex flex-column justify-content-evenly col-5">
+                    <span className="fw-700 fs-16 text-truncate ">
+                      {`${item.firstName} ${item.lastName}`}
+                    </span>
+                    <span className="fw-400 fs-14">
+                      {item.type === "send"
+                        ? "Transfer"
+                        : item.type === "topup"
+                        ? "Topup"
+                        : "Accept"}
+                    </span>
+                  </div>
+                  <div
+                    className="history-list__amount fw-700 fs-16"
+                    style={
+                      item.type === "send" || item.type === "topup"
+                        ? { color: "#FF5B37" }
+                        : { color: "#1EC15F" }
+                    }
+                  >
+                    {item.type === "send" ? "-" : "+"}
+                    Rp{item.amount}
+                  </div>
+                </div>
+              ))
+            ) : (
+              <h1>Can`t Find Any Transaction History</h1>
+            )}
           </div>
         </div>
       </div>
