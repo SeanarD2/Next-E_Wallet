@@ -5,6 +5,7 @@ import { getDataCookie } from "middleware/authPage";
 import axios from "utils/axios";
 import { useRouter } from "next/router";
 import PersonalInfo from "components/Profile/PersonalInfo";
+import ChangePassword from "components/Profile/ChangePassword";
 
 export async function getServerSideProps(context) {
   const dataCookie = await getDataCookie(context);
@@ -48,7 +49,7 @@ export default function EditPersonalInfoUser(props) {
           <div className="row rp">
             <Sidebar activePage="menu4" />
             <div className="row col-lg-9 rp">
-              <PersonalInfo />
+              <ChangePassword />
             </div>
           </div>
         </div>

@@ -123,6 +123,21 @@ const user = (state = initialScale, action) => {
         ...state,
       };
     }
+    case "CHANGE_PASS_PENDING": {
+      return {
+        ...state,
+      };
+    }
+    case "CHANGE_PASS_FULFILLED": {
+      return {
+        ...state,
+      };
+    }
+    case "CHANGE_PASS_REJECTED": {
+      return {
+        ...state,
+      };
+    }
 
     default: {
       return state;

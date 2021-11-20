@@ -37,3 +37,14 @@ export const updateDataUser = (data) => {
     }),
   };
 };
+
+export const changePass = (data) => {
+  return {
+    type: "CHANGE_PASS",
+    payload: axios.patch(`/user/password/${data.id}`, {
+      oldPassword: data.oldPassword,
+      newPassword: data.newPassword,
+      confirmPassword: data.confirmPassword,
+    }),
+  };
+};
