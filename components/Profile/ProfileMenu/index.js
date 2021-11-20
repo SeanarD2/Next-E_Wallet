@@ -63,7 +63,10 @@ function ProfileComp(props) {
               />
             </div>
 
-            <div className="edit-menu__personal-info my-4 rds-10 p-3 bg-8ed d-flex justify-content-between align-items-center">
+            <div
+              onClick={() => router.push("/home/profile/change-pin")}
+              className="edit-menu__personal-info my-4 rds-10 p-3 bg-8ed d-flex justify-content-between align-items-center"
+            >
               <span className="fw-700 fs-16 color-gray57">Change PIN</span>
               <img
                 src="/assets/image/sidebar/arrow-up.svg"

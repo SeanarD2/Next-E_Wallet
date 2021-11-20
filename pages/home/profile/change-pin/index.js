@@ -4,7 +4,9 @@ import Sidebar from "components/Sidebar";
 import { getDataCookie } from "middleware/authPage";
 import axios from "utils/axios";
 import { useRouter } from "next/router";
-import ProfileMenu from "components/Profile/ProfileMenu";
+import PersonalInfo from "components/Profile/PersonalInfo";
+import ChangePin from "components/Profile/ChangePin";
+import NewPin from "components/Profile/NewPin";
 
 export async function getServerSideProps(context) {
   const dataCookie = await getDataCookie(context);
@@ -17,13 +19,30 @@ export async function getServerSideProps(context) {
     };
   }
 
+  const historyList = await axios
+    .get(`/transaction/history?page=1&limit=6&filter=MONTH`, {
+      headers: {
+        Authorization: `Bearer ${dataCookie.token}`,
+      },
+    })
+    .then((res) => {
+      console.log("THEN");
+      console.log(res);
+      return res.data.data;
+    })
+    .catch((err) => {
+      console.log("CATCH");
+      return [];
+    });
   return {
-    props: {},
+    props: { historyList: historyList },
   };
 }
 
-export default function ProfilUser(props) {
+export default function ChangePinPage(props) {
   const router = useRouter();
+  console.log(router.query);
+  console.log(props.historyList);
 
   return (
     <>
@@ -32,7 +51,7 @@ export default function ProfilUser(props) {
           <div className="row rp">
             <Sidebar activePage="menu4" />
             <div className="row col-lg-9 rp">
-              <ProfileMenu />
+              <ChangePin setChangePin={() => setChangePin()} />
             </div>
           </div>
         </div>
