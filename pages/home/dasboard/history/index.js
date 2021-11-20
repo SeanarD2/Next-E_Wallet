@@ -1,8 +1,6 @@
 import React, { useState, useEffct } from "react";
 import Layout from "components/Layout";
 import Sidebar from "components/Sidebar";
-import Balance from "components/Dasboard/Balance";
-import Statistic from "components/Dasboard/Statistic";
 import { getDataCookie } from "middleware/authPage";
 import axios from "utils/axios";
 
@@ -18,7 +16,7 @@ export async function getServerSideProps(context) {
   }
 
   const historyList = await axios
-    .get(`/transaction/history?page=1&limit=8&filter=MONTH`, {
+    .get(`/transaction/history?page=1&limit=6&filter=MONTH`, {
       headers: {
         Authorization: `Bearer ${dataCookie.token}`,
       },

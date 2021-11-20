@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from "react";
-import Navbar from "components/module/Navbar";
 import Layout from "components/Layout";
 import axios from "utils/axios";
 import { authPage, getDataCookie } from "middleware/authPage";

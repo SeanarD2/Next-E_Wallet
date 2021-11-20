@@ -3,7 +3,7 @@ import Layout from "components/Layout";
 import Sidebar from "components/Sidebar";
 import { getDataCookie } from "middleware/authPage";
 import axios from "utils/axios";
-import Amount from "components/Transfer/Amount";
+import TransferSuccess from "components/Transfer/Success";
 
 export async function getServerSideProps(context) {
   const dataCookie = await getDataCookie(context);
@@ -45,7 +45,7 @@ export default function Dasboard(props) {
           <div className="row rp">
             <Sidebar activePage="menu2" />
             <div className="row col-lg-9 rp">
-              <Amount dataReceiver={props.dataReceiver} />
+              <TransferSuccess dataReceiver={props.dataReceiver} />
             </div>
           </div>
         </div>

@@ -3,22 +3,25 @@ import React, { useState, useEffect } from "react";
 import { Bar } from "react-chartjs-2";
 import Link from "next/link";
 import axios from "utils/axios";
-import Cookie from "js-cookie";
+import {
+  getIncomeExpense,
+  getTransactionHistory,
+  setTransferData,
+} from "redux/action/transaction";
+import { connect } from "react-redux";
 
-export default function Statistic(props) {
-  const { firstName, lastName } = props;
+function Statistic(props) {
+  console.log(props, "STATISTIC");
+  const { dataUserLogin } = props.user;
+  // const { dashboard } = props.transaction;
 
-  const [dataBalance, setDataBalance] = useState({});
+  const [dataBalance, setDataBalance] = useState({
+    totalIncome: 0,
+    totalExpense: 0,
+  });
   const [labelExpense, setLabelExpense] = useState([]);
   const [listExpense, setListExpense] = useState([]);
   const [listIncome, setListIncome] = useState([]);
-
-  // useEffect(() => {
-  //   console.log(listExpense);
-  // }, [listExpense]);
-  // useEffect(() => {
-  //   console.log(labelExpense);
-  // }, [labelExpense]);
 
   // CHART CONFIG
   const data = {
@@ -54,18 +57,14 @@ export default function Statistic(props) {
   };
 
   useEffect(() => {
-    axios
-      .get(`/dashboard/${Cookie.get("id")}`)
-      .then((res) => {
-        // console.log(res.data.data);
-        setDataBalance(res.data.data);
-      })
-      .catch((err) => {
-        setDataBalance({});
-        // console.log(err.response.data.msg);
-      });
+    props.getIncomeExpense(dataUserLogin.id).then((res) => {
+      console.log(res.value.data.data);
+      setDataBalance(res.value.data.data);
+    });
 
-    getTransactionHistory();
+    props.getTransactionHistory().then((res) => {
+      console.log(res.value.data.data);
+    });
   }, []);
 
   return (
@@ -106,8 +105,8 @@ export default function Statistic(props) {
             </Link>
           </div>
           <div className="trans-history my-3">
-            {dataHistory ? (
-              dataHistory.map((item, index) => (
+            {props.transaction.history ? (
+              props.transaction.history.map((item, index) => (
                 <div
                   key={index}
                   className="history-list d-flex align-items-center justify-content-between my-3"
@@ -156,3 +155,15 @@ export default function Statistic(props) {
     </div>
   );
 }
+
+const mapStateToProps = (state) => ({
+  user: state.user,
+  transaction: state.transaction,
+});
+const mapDispatchToProps = {
+  getIncomeExpense,
+  getTransactionHistory,
+  setTransferData,
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(Statistic);

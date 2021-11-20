@@ -1,13 +1,16 @@
 import router from "next/router";
 import React, { useState, useEffect } from "react";
 import Cookie from "js-cookie";
+import { getDataReceiver } from "redux/action/user";
+import { connect } from "react-redux";
 
-export default function SearchReceiver(props) {
+function SearchReceiver(props) {
   // console.log(props.allUser, "ALL USER");
   const [allUser, setAllUser] = useState(props.allUser);
 
   const handleSelectedReceiver = (id) => {
     Cookie.set("receiverId", id);
+    props.getDataReceiver(id);
     router.push("/home/transfer/amount");
   };
 
@@ -66,3 +69,10 @@ export default function SearchReceiver(props) {
     </div>
   );
 }
+
+const mapStateToProps = (state) => ({
+  user: state.user,
+});
+const mapDispatchToProps = { getDataReceiver };
+
+export default connect(mapStateToProps, mapDispatchToProps)(SearchReceiver);

@@ -69,7 +69,7 @@ function CreatePin(props) {
       .updatePin({ id: props.user.dataUserLogin.id, pin: allPin })
       .then((res) => {
         console.log(res);
-        router.push("/auth/create-pin/success");
+        router.push("/");
       })
       .catch((err) => {
         console.log(err.response);
@@ -90,7 +90,7 @@ function CreatePin(props) {
         <div className="login-left-side d-flex justify-content-center">
           <div className="color-white login-left-side__content">
             <h3>Zwallet</h3>
-            <img src="../assets/image/loginPage/2phone.png" />
+            <img src="/assets/image/loginPage/2phone.png" />
             <h3 className="my-4">App that Covering Banking Needs.</h3>
             <p className="zwalet-desc">
               Zwallet is an application that focussing in banking needs for all
@@ -101,80 +101,26 @@ function CreatePin(props) {
           </div>
         </div>
 
-        <div className="login-right-side pr-lg-5  p-lg-5 text-start">
-          <h3 className="text-start f-nunito-sans fs-24 fw-700 login-title my-4 right-side__text-header">
-            Start Accessing Banking Needs With All Devices and All Platforms
-            With 30.000+ Users
-          </h3>
-          <p className="my-4">
-            Create 6 digits pin to secure all your money and your data in
-            Zwallet app. Keep it secret and don’t tell anyone about your Zwallet
-            account password and the PIN.
-          </p>
-          <form onSubmit={(event) => handleSubmit(event)}>
-            <div className="input-pin my-5">
-              <input
-                className="pinForm p-2 text-center fw-700 fs-30 rds-12"
-                maxLength="1"
-                id="pin-1"
-                name="1"
-                onChange={(event) => addPin(event)}
-                type="number"
-              ></input>
-              <input
-                className="pinForm p-2 text-center fw-700 fs-30 rds-12"
-                maxLength="1"
-                id="pin-2"
-                name="2"
-                onChange={(event) => addPin(event)}
-                type="number"
-              ></input>
-              <input
-                className="pinForm p-2 text-center fw-700 fs-30 rds-12"
-                maxLength="1"
-                id="pin-3"
-                name="3"
-                onChange={(event) => addPin(event)}
-                type="number"
-              ></input>
-              <input
-                className="pinForm p-2 text-center fw-700 fs-30 rds-12"
-                maxLength="1"
-                id="pin-4"
-                name="4"
-                onChange={(event) => addPin(event)}
-                type="number"
-              ></input>
-              <input
-                className="pinForm p-2 text-center fw-700 fs-30 rds-12"
-                maxLength="1"
-                id="pin-5"
-                onChange={(event) => addPin(event)}
-                name="5"
-                type="number"
-              ></input>
-              <input
-                className="pinForm p-2 text-center fw-700 fs-30 rds-12"
-                maxLength="1"
-                id="pin-6"
-                name="6"
-                onChange={(event) => addPin(event)}
-                type="number"
-              ></input>
+        <div className="login-right-side pr-lg-5  p-lg-5 text-start" >
+          <div className="col-10">
+            <div className="check d-flex justify-content-center align-items-center my-5">
+              <img src="/assets/image/check.png" alt="" />
             </div>
-
-            <button
+          <h3 className="text-start f-nunito-sans fs-24 fw-700 login-title my-4 right-side__text-header">
+            Your PIN Was Successfully Created
+          </h3>
+          <p className="my-4 fs-16 fw-400 lh-35 color-gray99">
+            Your PIN was successfully created and you can now access all the
+            features in Zwallet. Login to your new account and start exploring!
+          </p>
+          <button
               type="submit"
-              className={
-                pin
-                  ? "btn btn-enable col-12 py-3"
-                  : "btn btn-disable col-12 py-3"
-              }
-              disabled={btnDisable}
+              className= "btn btn-enable col-12 py-3 rds-12 mt-5"
+              onClick={() => router.push("/login")}
             >
-              Confirm
+              Login Now
             </button>
-          </form>
+        </div>
         </div>
       </div>
     </>

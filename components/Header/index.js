@@ -1,11 +1,8 @@
 import React, { useState, useEffect } from "react";
-import { getDataCookie } from "middleware/authPage";
-import axios from "utils/axios";
-import Cookie from "js-cookie";
 import { connect } from "react-redux";
 
 function Header(props) {
-  console.log(props.user.dataUserLogin, "HEADER");
+  // console.log(props.user.dataUserLogin, "HEADER");
   const { dataUserLogin } = props.user;
   return (
     <>
@@ -29,7 +26,9 @@ function Header(props) {
             </div>
             <div className="user-info__name-numb">
               <span className="header__user-name fw-700 fs-18">
-                {dataUserLogin ? dataUserLogin.fullName : "User Name"}
+                {dataUserLogin
+                  ? dataUserLogin.firstName + " " + dataUserLogin.lastName
+                  : "User Name"}
               </span>
               {dataUserLogin.noTelp ? (
                 <span className="header__user-numb fw-400 fs-13">

@@ -1,8 +1,6 @@
 import React, { useState, useEffct } from "react";
 import Layout from "components/Layout";
 import Sidebar from "components/Sidebar";
-import Balance from "components/Dasboard/Balance";
-import Statistic from "components/Dasboard/Statistic";
 import { getDataCookie } from "middleware/authPage";
 import axios from "utils/axios";
 import SearchReceiver from "components/Transfer/SearchReceiver";

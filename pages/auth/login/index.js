@@ -8,8 +8,9 @@ import Image from "next/image";
 import { ToastContainer, toast } from "react-toastify";
 import Link from "next/link";
 import Head from "next/head";
-import { login } from "redux/action/user";
+import { login } from "redux/action/auth";
 import { connect } from "react-redux";
+import { getDataUser } from "redux/action/user";
 
 // ROUTING
 export async function getServerSideProps(context) {
@@ -17,7 +18,7 @@ export async function getServerSideProps(context) {
   if (dataCookie.isLogin) {
     return {
       redirect: {
-        destination: "/",
+        destination: "/home/dasboard",
         permanent: false,
       },
     };
@@ -43,7 +44,20 @@ function Login(props) {
         Cookie.set("token", res.value.data.data.token);
         Cookie.set("id", res.value.data.data.id);
 
-        router.push("/home/dasboard");
+        props
+          .getDataUser(Cookie.get("id"))
+          .then((res) => {
+            console.log(res.value.data);
+            setBtnDisable(false);
+          })
+          .catch((err) => {
+            console.log(err.value);
+          });
+
+        console.log(res.value.data.data.pin);
+        !res.value.data.data.pin
+          ? router.push("/create-pin")
+          : router.push("/home/dasboard");
       })
       .catch((err) => {
         console.log(err);
@@ -65,8 +79,8 @@ function Login(props) {
   };
 
   useEffect(() => {
-    props.user.isError ? toast.error(props.user.msg) : null;
-  }, [props.user.isError]);
+    props.auth.isError ? toast.error(props.auth.msg) : null;
+  }, [props.auth.isError]);
 
   const handleChangeText = (e) => {
     setForm({ ...form, [e.target.name]: e.target.value });
@@ -137,8 +151,8 @@ function Login(props) {
               <input
                 name="email"
                 placeholder="Enter your email"
-                onChange={() => handleChangeText(event)}
-                className="form-control border-0"
+                onChange={(event) => handleChangeText(event)}
+                className="form-control login-input border-0"
                 type="email"
               />
             </div>
@@ -156,7 +170,7 @@ function Login(props) {
                 name="password"
                 placeholder="Enter your password"
                 onChange={(event) => handleChangeText(event)}
-                className="form-control border-0"
+                className="form-control border-0 login-input"
                 type={showPass ? "text" : "password"}
               />
               <img
@@ -193,9 +207,11 @@ function Login(props) {
 
 const mapStateToProps = (state) => ({
   auth: state.auth,
+  user: state.user,
 });
 const mapDispatchToProps = {
   login,
+  getDataUser,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(Login);

@@ -4,13 +4,13 @@ import PlusSVG from "components/SVG/PlusSVG";
 import axios from "utils/axios";
 import Cookie from "js-cookie";
 import router from "next/router";
+import { connect } from "react-redux";
 
-export default function Balance(props) {
-  // console.log(props);
-  const { firstName, lastName } = props;
+function Balance(props) {
+  // console.log(props.user.dataUserLogin, "BALANCE");
 
   // GET DATA USER
-  const [dataUser, setDataUser] = useState({});
+  const [dataUser, setDataUser] = useState(props.user.dataUserLogin);
   useEffect(() => {
     axios
       .get(`/user/profile/${Cookie.get("id")}`)
@@ -59,3 +59,10 @@ export default function Balance(props) {
     </div>
   );
 }
+
+const mapStateToProps = (state) => ({
+  user: state.user,
+});
+const mapDispatchToProps = {};
+
+export default connect(mapStateToProps, mapDispatchToProps)(Balance);

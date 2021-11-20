@@ -1,9 +1,11 @@
 .btn-disable {
   background-color: #dadada !important;
+  border: none;
   color: #88888f !important;
 }
 
 .btn-enable {
   background-color: #6379f4 !important;
   color: #ffffff !important;
+  border: none;
 }

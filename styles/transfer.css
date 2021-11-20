@@ -6,7 +6,7 @@
 
 .search-receiver__input input {
   border: none;
-  background-color: rgba(58, 61, 66, 0);
+  background-color: rgba(58, 61, 66, 0) !important;
 }
 
 .amont-input {

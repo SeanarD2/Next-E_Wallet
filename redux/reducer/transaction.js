@@ -1,14 +1,16 @@
 const initialScale = {
-  dataUserLogin: {},
-  dataReceiver: {},
+  dashboard: {},
+  history: [],
+  transferData: {},
+
   isLoading: false,
   isError: false,
   msg: "",
 };
 
-const user = (state = initialScale, action) => {
+const transaction = (state = initialScale, action) => {
   switch (action.type) {
-    case "GET_USER_LOGIN_PENDING": {
+    case "GET_INCOME_EXPENSE_PENDING": {
       return {
         //
         ...state,
@@ -16,27 +18,27 @@ const user = (state = initialScale, action) => {
         isError: false,
       };
     }
-    case "GET_USER_LOGIN_FULFILLED": {
+    case "GET_INCOME_EXPENSE_FULFILLED": {
       return {
         //
         ...state,
-        dataUserLogin: action.payload.data.data,
+        dashboard: action.payload.data.data,
         isLoading: false,
         isError: false,
         msg: action.payload.data.message,
       };
     }
-    case "GET_USER_LOGIN_REJECTED": {
+    case "GET_INCOME_EXPENSE_REJECTED": {
       return {
         //
         ...state,
-        dataUserLogin: {},
+        dashboard: {},
         isLoading: false,
         isError: true,
         msg: action.payload.response.data.msg,
       };
     }
-    case "GET_RECEIVER_DATA_PENDING": {
+    case "GET_TRANSACTION_HISTORY_PENDING": {
       return {
         ...state,
         isLoading: true,
@@ -44,45 +46,56 @@ const user = (state = initialScale, action) => {
         msg: "",
       };
     }
-    case "GET_RECEIVER_DATA_FULFILLED": {
+    case "GET_TRANSACTION_HISTORY_FULFILLED": {
       return {
         ...state,
+        history: action.payload.data.data,
         isLoading: false,
         isError: false,
-        dataReceiver: action.payload.data.data,
         msg: action.payload.data.message,
       };
     }
-    case "GET_RECEIVER_DATA_REJECTED": {
+    case "GET_TRANSACTION_HISTORY_REJECTED": {
       return {
         ...state,
+        history: {},
         isLoading: false,
         isError: true,
-        dataReceiver: {},
-        msg: action.payload.response.data.msg,
+        msg: action.payload.response.data.message,
       };
     }
-    case "UPDATE_PIN_PENDING": {
+    case "SET_TRANSFER_DATA": {
       return {
         ...state,
-        isLoading: true,
-        isError: false,
-        // msg: action.payload.response.data.msg,
+        transferData: action.payload,
       };
     }
-    case "UPDATE_PIN_FULFILLED": {
-      return {
-        ...state,
-        isLoading: false,
-        isError: false,
-      };
+    case "CHECK_PIN_PENDING": {
+      return { ...state };
     }
-    case "UPDATE_PIN_REJECTED": {
+    case "CHECK_PIN_FULFILLED": {
+      return { ...state };
+    }
+    case "CHECK_PIN_REJECTED": {
       return {
         ...state,
-        isLoading: false,
         isError: true,
         msg: action.payload.response.data.msg,
+      };
+    }
+    case "TRANSFER_PENDING": {
+      return {
+        ...state,
+      };
+    }
+    case "TRANSFER_FULFILLED": {
+      return {
+        ...state,
+      };
+    }
+    case "TRANSFER_REJECTED": {
+      return {
+        ...state,
       };
     }
 
@@ -92,4 +105,4 @@ const user = (state = initialScale, action) => {
   }
 };
 
-export default user;
+export default transaction;
