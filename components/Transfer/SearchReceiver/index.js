@@ -1,7 +1,7 @@
 import router from "next/router";
 import React, { useState, useEffect } from "react";
 import Cookie from "js-cookie";
-import { getDataReceiver } from "redux/action/user";
+import { getAllUser, getDataReceiver } from "redux/action/user";
 import { connect } from "react-redux";
 
 function SearchReceiver(props) {
@@ -12,6 +12,18 @@ function SearchReceiver(props) {
     Cookie.set("receiverId", id);
     props.getDataReceiver(id);
     router.push("/home/transfer/amount");
+  };
+
+  const [search, setSearch] = useState("");
+  const [page, setPage] = useState(1);
+
+  const handleSearch = (e) => {
+    if (e.key === "Enter") {
+      router.push(`/home/transfer?search=${search}`);
+      props.getAllUser({ search: search }).then((res) => {
+        setAllUser(res.value.data.data);
+      });
+    }
   };
 
   return (
@@ -27,11 +39,14 @@ function SearchReceiver(props) {
             className=""
             style={{ width: "100%" }}
             placeholder="Search receiver here"
+            onChange={(event) => setSearch(event.target.value)}
+            onKeyPress={(event) => handleSearch(event)}
+            value={search}
           ></input>
         </div>
         <div className="my-5">
-          {props.allUser ? (
-            props.allUser.map((item, index) => (
+          {allUser ? (
+            allUser.map((item, index) => (
               <div
                 key={index}
                 className="history-list d-flex align-items-center my-5 sec-card p-lg-4"
@@ -41,7 +56,7 @@ function SearchReceiver(props) {
                   <img
                     src={
                       item.image
-                        ? "http://localhost:3001"
+                        ? `http://localhost:3001/uploads/${item.image}`
                         : "/assets/image/default-profile.jpg"
                     }
                     alt=""
@@ -73,6 +88,6 @@ function SearchReceiver(props) {
 const mapStateToProps = (state) => ({
   user: state.user,
 });
-const mapDispatchToProps = { getDataReceiver };
+const mapDispatchToProps = { getDataReceiver, getAllUser };
 
 export default connect(mapStateToProps, mapDispatchToProps)(SearchReceiver);

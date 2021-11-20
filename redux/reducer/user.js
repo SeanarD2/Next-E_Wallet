@@ -1,6 +1,10 @@
 const initialScale = {
   dataUserLogin: {},
   dataReceiver: {},
+  dataAllUser: {},
+  pageInfo: {
+    totalPage: 1,
+  },
   isLoading: false,
   isError: false,
   msg: "",
@@ -83,6 +87,40 @@ const user = (state = initialScale, action) => {
         isLoading: false,
         isError: true,
         msg: action.payload.response.data.msg,
+      };
+    }
+    case "GET_ALL_USER_PENDING": {
+      return {
+        ...state,
+      };
+    }
+    case "GET_ALL_USER_REJECTED": {
+      return {
+        ...state,
+      };
+    }
+    case "GET_ALL_USER_FULFILLED": {
+      return {
+        ...state,
+        dataAllUser: action.payload.data.data,
+        isError: false,
+        isLoading: false,
+        pageInfo: action.payload.data.pagination,
+      };
+    }
+    case "UPDATE_DATA_USER_PENDING": {
+      return {
+        ...state,
+      };
+    }
+    case "UPDATE_DATA_USER_REJECTED": {
+      return {
+        ...state,
+      };
+    }
+    case "UPDATE_DATA_USER_FULFILLED": {
+      return {
+        ...state,
       };
     }
 

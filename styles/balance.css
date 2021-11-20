@@ -1,10 +1,11 @@
 .balance-out {
-  height: auto;
+  /* height: auto; */
 }
 
 .balance-box {
   background-color: #6379f4;
   border-radius: 20px;
+  /* height: 100%; */
 }
 
 .balance-btn div {

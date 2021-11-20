@@ -1,0 +1,22 @@
+.profile-menu__cont {
+  background-color: white;
+  border-radius: 20px;
+  box-shadow: 0px 4px 20px 0px #0000000d;
+}
+
+.profile-menu__cont img {
+  height: 80px;
+  width: 80px;
+  border-radius: 10px;
+  object-fit: cover;
+}
+
+.edit-picture__pen {
+  /* height: 20px !important;
+  width: 20px !important;
+  object-fit: cover !important; */
+}
+
+input {
+  border: none !important;
+}

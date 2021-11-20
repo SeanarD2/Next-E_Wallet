@@ -3,7 +3,7 @@
   border-radius: 20px;
   box-shadow: 0px 4px 20px 0px #0000000d;
   /* height: 678px; */
-  /* height: 100%; */
+  min-height: 600px;
   /* box-shadow: 0px 2px 40px #000000; */
 }
 

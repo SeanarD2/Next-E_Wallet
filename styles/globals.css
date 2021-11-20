@@ -9,6 +9,8 @@
 @import url("./balance.css");
 @import url("./statistic.css");
 @import url("./transfer.css");
+@import url("./pagination.css");
+@import url("./profile.css");
 
 html,
 body {

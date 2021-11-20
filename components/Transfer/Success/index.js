@@ -75,7 +75,7 @@ function TransferSuccess(props) {
                 <img
                   src={
                     dataReceiver.image
-                      ? "http://localhost:3001"
+                      ? `http://localhost:3001/uploads/${dataReceiver.image}`
                       : "/assets/image/default-profile.jpg"
                   }
                   alt=""

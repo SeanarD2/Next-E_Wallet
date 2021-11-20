@@ -26,6 +26,11 @@ export default function Sidebar(props) {
     router.push("/home/transfer");
   };
 
+  const toProfile = () => {
+    handleChangePage("menu4");
+    router.push("/home/profile");
+  };
+
   const handleLogout = () => {
     handleChangePage("menu5");
     Cookie.remove("id");
@@ -129,7 +134,7 @@ export default function Sidebar(props) {
             </div>
             <div
               className="side-content__profile mb-5 d-flex align-items-center"
-              onClick={() => handleChangePage("menu4")}
+              onClick={() => toProfile()}
               onMouseOver={() => mouseOver("menu4")}
               onMouseOut={() => mouseOut("menu4")}
             >

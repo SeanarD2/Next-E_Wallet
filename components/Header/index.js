@@ -18,7 +18,7 @@ function Header(props) {
               <img
                 src={
                   dataUserLogin.image
-                    ? `${dataUserLogin.image}`
+                    ? `http://localhost:3001/uploads/${dataUserLogin.image}`
                     : "/assets/image/default-profile.jpg"
                 }
                 alt=""

@@ -40,19 +40,12 @@ export default function CreateNewPass(props) {
     axios
       .patch("/auth/reset-password", form)
       .then((res) => {
-        // console.log(res.data.data);
         toast.success(res.data.msg);
         setTimeout(function () {
           router.push("/login");
         }, 5000);
-        // router.push("/login");
       })
-      .catch((err) => {
-        // toast.error(err.data);
-        // console.log("test");
-        // console.log(err);
-        // console.log(err.msg);
-      });
+      .catch((err) => {});
   };
 
   const handleChangeText = (e) => {

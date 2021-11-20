@@ -42,7 +42,7 @@ function Balance(props) {
             ""
           )}
         </div>
-        <div className="col-lg-3 balance-btn">
+        <div className="col-lg-3 balance-btn row">
           <div
             onClick={() => router.push("/home/transfer")}
             className="balance__transfer px-lg-2 py-lg-2 mb-3 d-flex justify-content-center align-items-center"

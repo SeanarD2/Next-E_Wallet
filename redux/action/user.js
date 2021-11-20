@@ -20,3 +20,20 @@ export const updatePin = (data) => {
     payload: axios.patch(`/user/pin/${data.id}`, { pin: data.pin }),
   };
 };
+
+export const getAllUser = (data) => {
+  return {
+    type: "GET_ALL_USER",
+    payload: axios.get(`/user?page=1&limit=5&search=${data.search}&sort=`),
+  };
+};
+
+export const updateDataUser = (data) => {
+  return {
+    type: "UPDATE_DATA_USER",
+    payload: axios.patch(`/user/profile/${data.id}`, {
+      firstName: data.firstName,
+      lastName: data.lastName,
+    }),
+  };
+};

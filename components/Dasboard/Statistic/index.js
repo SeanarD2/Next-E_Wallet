@@ -111,33 +111,38 @@ function Statistic(props) {
                   key={index}
                   className="history-list d-flex align-items-center justify-content-between my-3"
                 >
-                  <div className="history-list__image-user">
-                    <img
-                      src={
-                        item.image
-                          ? "http://localhost:3001"
-                          : "/assets/image/default-profile.jpg"
-                      }
-                      alt="userProfiles"
-                    />
-                  </div>
-                  <div className="history-list__details-user d-flex flex-column justify-content-evenly col-5">
-                    <span className="fw-700 fs-16 text-truncate ">
-                      {`${item.firstName} ${item.lastName}`}
-                    </span>
-                    <span className="fw-400 fs-14">
-                      {item.type === "send"
-                        ? "Transfer"
-                        : item.type === "topup"
-                        ? "Topup"
-                        : "Accept"}
-                    </span>
+                  <div className="d-flex text-truncate">
+                    <div className="history-list__image-user me-3">
+                      <img
+                        src={
+                          item.image
+                            ? `http://localhost:3001/uploads/${item.image}`
+                            : "/assets/image/default-profile.jpg"
+                        }
+                        alt="userProfiles"
+                      />
+                    </div>
+                    <div className="history-list__details-user d-flex flex-column justify-content-evenly">
+                      <span className="fw-700 fs-16 text-truncate ">
+                        {`${item.firstName} ${item.lastName}`}
+                      </span>
+                      <span className="fw-400 fs-14">
+                        {item.type === "send"
+                          ? "Transfer"
+                          : item.type === "topup"
+                          ? "Topup"
+                          : "Accept"}
+                      </span>
+                    </div>
                   </div>
                   <div
-                    className="history-list__amount fw-700 fs-16"
+                    className="history-list__amount fw-700 fs-16 ms-2"
                     style={
-                      item.type === "send" || item.type === "topup"
-                        ? { color: "#FF5B37" }
+                      item.type === "send" ||
+                      (item.type === "topup" && item.status == "pending")
+                        ? {
+                            color: "#FF5B37",
+                          }
                         : { color: "#1EC15F" }
                     }
                   >

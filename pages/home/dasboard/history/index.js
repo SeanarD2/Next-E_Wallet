@@ -3,6 +3,7 @@ import Layout from "components/Layout";
 import Sidebar from "components/Sidebar";
 import { getDataCookie } from "middleware/authPage";
 import axios from "utils/axios";
+import { useRouter } from "next/router";
 
 export async function getServerSideProps(context) {
   const dataCookie = await getDataCookie(context);
@@ -36,6 +37,8 @@ export async function getServerSideProps(context) {
 }
 
 export default function DasboardHistory(props) {
+  const router = useRouter();
+  console.log(router.query);
   console.log(props.historyList);
   return (
     <>
@@ -65,7 +68,7 @@ export default function DasboardHistory(props) {
                           <img
                             src={
                               item.image
-                                ? "http://localhost:3001"
+                                ? `http://localhost:3001/uploads/${item.image}`
                                 : "/assets/image/default-profile.jpg"
                             }
                             alt=""
@@ -86,7 +89,8 @@ export default function DasboardHistory(props) {
                         <div
                           className="history-list__amount fw-700 fs-16 color-green"
                           style={
-                            item.type === "send" || item.type === "topup"
+                            item.type === "send" ||
+                            (item.type === "topup" && item.status == "pending")
                               ? {
                                   color: "#FF5B37",
                                 }
