@@ -70,7 +70,7 @@ function DasboardHistory(props) {
                     <span className="fw-700 fs-18">Transaction History</span>
                     <select
                       onChange={(event) => handleFilter(event)}
-                      className="px-4 py-2 history-filter d-flex justify-content-center fw-400 fs-13"
+                      className="hover-pointer px-4 py-2 history-filter d-flex justify-content-center fw-400 fs-13"
                     >
                       <option value="">--- Select Filter ---</option>
                       <option value="WEEK">WEEK</option>

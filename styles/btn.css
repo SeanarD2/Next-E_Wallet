@@ -9,3 +9,9 @@
   color: #ffffff !important;
   border: none;
 }
+
+.btn-error {
+  background-color: #ff5b37 !important;
+  color: #ffffff !important;
+  border: none;
+}

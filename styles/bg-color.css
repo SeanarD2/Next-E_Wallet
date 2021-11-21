@@ -16,6 +16,10 @@
   border-radius: 20px;
 }
 
+.rds-25p {
+  border-radius: 25% !important;
+}
+
 .rds-20 {
   border-radius: 20px !important;
 }
@@ -27,7 +31,14 @@
 .rds-10 {
   border-radius: 10px !important;
 }
+.rds-0 {
+  border-radius: 0px !important;
+}
 
 .rotate90 {
   transform: rotate(90deg);
+}
+
+.modal-confirm-pin .modal-content {
+  border-radius: 20px !important;
 }

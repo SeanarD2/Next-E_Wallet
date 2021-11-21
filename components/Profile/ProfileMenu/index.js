@@ -75,7 +75,7 @@ function ProfileComp(props) {
             <div className="col-5">
               <Button
                 variant="secondary"
-                className="col-12"
+                className="col-12 btn-error"
                 onClick={() => deleteImage()}
               >
                 Delete
@@ -98,11 +98,17 @@ function ProfileComp(props) {
             alt=""
             className="mt-5"
           />
-          <div className="text-center my-3 d-flex align-items-center justify-content-center">
-            {/* <img className="edit-picture__pen" src="/assets/image/edit.png" alt="" /> */}
-            <span onClick={handleShow} className="fw-400 fs-16 color-gray86">
-              Edit
-            </span>
+          <div
+            onClick={handleShow}
+            className="text-center my-3 d-flex align-items-center justify-content-center hover-pointer"
+          >
+            <img
+              className="rds-0 me-2"
+              src="/assets/image/edit.png"
+              alt=""
+              style={{ width: "17px", height: "17px" }}
+            />
+            <span className="fw-400 fs-16 color-gray86">Edit</span>
           </div>
           <div className="fw-700 fs-24 color-gray57">
             {dataUserLogin.firstName + " " + dataUserLogin.lastName}
@@ -115,7 +121,7 @@ function ProfileComp(props) {
             <div className="menuEditProfile col-6 my-4 ">
               <div
                 onClick={() => router.push("/home/profile/personal-info")}
-                className="edit-menu__personal-info my-4 rds-10 p-3 bg-8ed d-flex justify-content-between align-items-center"
+                className="hover-pointer edit-menu__personal-info my-4 rds-10 p-3 bg-8ed d-flex justify-content-between align-items-center"
               >
                 <span className="fw-700 fs-16 color-gray57">
                   Personal Information
@@ -130,7 +136,7 @@ function ProfileComp(props) {
 
               <div
                 onClick={() => router.push("/home/profile/change-password")}
-                className="edit-menu__personal-info my-4 rds-10 p-3 bg-8ed d-flex justify-content-between align-items-center"
+                className="hover-pointer edit-menu__personal-info my-4 rds-10 p-3 bg-8ed d-flex justify-content-between align-items-center"
               >
                 <span className="fw-700 fs-16 color-gray57">
                   Change Password
@@ -145,7 +151,7 @@ function ProfileComp(props) {
 
               <div
                 onClick={() => router.push("/home/profile/change-pin")}
-                className="edit-menu__personal-info my-4 rds-10 p-3 bg-8ed d-flex justify-content-between align-items-center"
+                className="hover-pointer edit-menu__personal-info my-4 rds-10 p-3 bg-8ed d-flex justify-content-between align-items-center"
               >
                 <span className="fw-700 fs-16 color-gray57">Change PIN</span>
                 <img
@@ -156,7 +162,7 @@ function ProfileComp(props) {
                 />
               </div>
 
-              <div className="edit-menu__personal-info my-4 rds-10 p-3 bg-8ed d-flex justify-content-start align-items-center">
+              <div className="hover-pointer edit-menu__personal-info my-4 rds-10 p-3 bg-8ed d-flex justify-content-start align-items-center">
                 <span className="fw-700 fs-16 color-gray57">Logout</span>
               </div>
             </div>

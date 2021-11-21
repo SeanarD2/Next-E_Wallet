@@ -57,7 +57,7 @@ function TransferSuccess(props) {
             <div className="sec-card p-4 d-flex flex-column justify-content-between my-3">
               <span className="color-gray86 fw-400 fs-16">Date & Time</span>
               <span className="fw-700 fs-22 color-gray5b">
-                {moment(dateNow).format("MMMM DD, YYYY - hh.mm")}
+                {moment(dateNow).format("MMMM DD, YYYY - HH.mm")}
               </span>
             </div>
 

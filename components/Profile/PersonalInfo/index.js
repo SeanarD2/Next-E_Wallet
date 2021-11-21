@@ -108,7 +108,10 @@ function PersonalInfo(props) {
             </div>
           </div>
           <div className="" style={{ color: "#6379F4" }}>
-            <Link href="" style={{ color: "#6379F4" }}>
+            <Link
+              href="/home/profile/phone-number"
+              style={{ color: "#6379F4" }}
+            >
               Manage
             </Link>
           </div>

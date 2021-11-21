@@ -52,7 +52,7 @@ export default function Sidebar(props) {
         <div className="side-content d-flex flex-column justify-content-between py-lg-5 px-lg-4">
           <div>
             <div
-              className="side-content__dashboard mb-5 d-flex align-items-center"
+              className="hover-pointer side-content__dashboard mb-5 d-flex align-items-center"
               onClick={() => toDashboardPage()}
               onMouseOver={() => mouseOver("menu1")}
               onMouseOut={() => mouseOut("menu1")}
@@ -79,7 +79,7 @@ export default function Sidebar(props) {
               </span>
             </div>
             <div
-              className="side-content__transfer mb-5 d-flex align-items-center"
+              className="hover-pointer side-content__transfer mb-5 d-flex align-items-center"
               onClick={() => toTransverPage()}
               onMouseOver={() => mouseOver("menu2")}
               onMouseOut={() => mouseOut("menu2")}
@@ -106,7 +106,7 @@ export default function Sidebar(props) {
               </span>
             </div>
             <div
-              className="side-content__topup mb-5 d-flex align-items-center"
+              className="hover-pointer side-content__topup mb-5 d-flex align-items-center"
               onClick={() => handleChangePage("menu3")}
               onMouseOver={() => mouseOver("menu3")}
               onMouseOut={() => mouseOut("menu3")}
@@ -133,7 +133,7 @@ export default function Sidebar(props) {
               </span>
             </div>
             <div
-              className="side-content__profile mb-5 d-flex align-items-center"
+              className="hover-pointer side-content__profile mb-5 d-flex align-items-center"
               onClick={() => toProfile()}
               onMouseOver={() => mouseOver("menu4")}
               onMouseOut={() => mouseOut("menu4")}
@@ -161,7 +161,7 @@ export default function Sidebar(props) {
             </div>
           </div>
           <div
-            className="side-content__logout d-flex align-items-center"
+            className="hover-pointer side-content__logout d-flex align-items-center"
             onClick={() => handleLogout()}
             onMouseOver={() => mouseOver("menu5")}
             onMouseOut={() => mouseOut("menu5")}

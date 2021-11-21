@@ -12,14 +12,17 @@ function Amount(props) {
     notes: "",
   });
 
-  const [btnDisable, setBtnDisable] = useState(false);
+  const [btnDisable, setBtnDisable] = useState(true);
   const changeAmount = (event) => {
     event.preventDefault();
     setTransfer({
       ...transfer,
       [event.target.name]: event.target.value,
     });
-    if (event.target.value > 0 && event.target.value <= dataUserLogin.balance) {
+    if (
+      event.target.value > 1000 &&
+      event.target.value <= dataUserLogin.balance
+    ) {
       setBtnDisable(false);
     } else {
       setBtnDisable(true);
@@ -71,11 +74,12 @@ function Amount(props) {
             Type the amount you want to transfer and then press continue to the
             next steps.
           </div>
+
           <div className="text-center">
             <form onSubmit={(event) => handleSubmit(event)}>
               <input
                 type="number"
-                placeholder="0"
+                placeholder="1001"
                 className="fs-42 fw-700 text-center amont-input"
                 style={
                   transfer.amount > 1000 &&

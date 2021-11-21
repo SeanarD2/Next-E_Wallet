@@ -70,3 +70,7 @@ select {
   appearance: none;
   text-align: center;
 }
+
+.hover-pointer:hover {
+  cursor: pointer;
+}

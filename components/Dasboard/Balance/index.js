@@ -45,12 +45,12 @@ function Balance(props) {
         <div className="col-lg-3 balance-btn row">
           <div
             onClick={() => router.push("/home/transfer")}
-            className="balance__transfer px-lg-2 py-lg-2 mb-3 d-flex justify-content-center align-items-center"
+            className="hover-pointer balance__transfer px-lg-2 py-lg-2 mb-3 d-flex justify-content-center align-items-center"
           >
             <ArrowUpSVG color={"#B5B0ED"} />
             <span>Transfer</span>
           </div>
-          <div className="balance__topup p-4 px-lg-2 py-lg-2 mt-3 d-flex justify-content-center align-items-center">
+          <div className="hover-pointer balance__topup p-4 px-lg-2 py-lg-2 mt-3 d-flex justify-content-center align-items-center">
             <PlusSVG color={"#B5B0ED"} />
             <span>Top Up</span>
           </div>
