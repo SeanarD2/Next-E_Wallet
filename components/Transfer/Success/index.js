@@ -19,7 +19,7 @@ function TransferSuccess(props) {
 
   const backToHome = () => {
     props.getDataUser(props.user.dataUserLogin.id).then((res) => {
-      // router.push("/home/dasboard");
+      router.push("/home/dasboard");
     });
   };
 

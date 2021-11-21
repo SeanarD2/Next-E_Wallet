@@ -8,17 +8,23 @@ import Link from "next/link";
 import router from "next/router";
 import Cookie from "js-cookie";
 import { Modal, Button } from "react-bootstrap";
+import axios from "utils/axios";
 
 export default function Sidebar(props) {
   const [active, setActive] = useState(props.activePage);
   const [hover, setHover] = useState("");
+
+  const [showLogout, setShowLogout] = useState(false);
+
+  const setCloseOut = () => setShowLogout(false);
+  const setShowOut = () => setShowLogout(true);
 
   const handleChangePage = (page) => {
     setActive(page);
   };
 
   const toDashboardPage = () => {
-    handleChangePage("menu2");
+    handleChangePage("menu1");
     router.push("/home/dasboard");
   };
 
@@ -38,6 +44,7 @@ export default function Sidebar(props) {
     Cookie.remove("token");
     Cookie.remove("receiverId");
     router.push("/login");
+    axios.post(`/auth/logout`);
   };
 
   const handleTopUp = () => {
@@ -57,6 +64,17 @@ export default function Sidebar(props) {
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
 
+  const [amount, setAmount] = useState("");
+
+  const handleSubmit = (event) => {
+    event.preventDefault;
+    axios.post(`/transaction/top-up`, { amount: amount }).then((res) => {
+      console.log(res.data);
+      window.open(res.data.data.redirectUrl);
+      handleClose();
+    });
+  };
+
   return (
     <>
       <Modal
@@ -74,37 +92,62 @@ export default function Sidebar(props) {
             <div className="fw-400 col-8 color-gray5b">
               Enter the amount of money, and click submit
             </div>
-            <input className="input-gray text-center px-5 py-2 mt-5 fs-24 color-prim fw-600"></input>
+            <input
+              value={amount}
+              onChange={(event) => setAmount(event.target.value)}
+              className="input-gray text-center px-5 py-2 mt-5 fs-24 color-prim fw-600"
+            ></input>
           </Modal.Body>
           <Modal.Footer style={{ borderTop: "none" }}>
             <button
               className="px-5 btn-enable rds-12 py-3"
               variant="primary"
-              onClick={(event) => cekPin(event)}
+              onClick={(event) => handleSubmit(event)}
             >
               Submit
             </button>
           </Modal.Footer>
         </div>
       </Modal>
-      <div className="side-box col-lg-3">
-        <div className="side-content d-flex flex-column justify-content-between py-lg-5 px-lg-4">
+
+      <Modal show={showLogout} onHide={setCloseOut}>
+        <Modal.Header closeButton>
+          <Modal.Title>Do you want to Logout?</Modal.Title>
+        </Modal.Header>
+        <Modal.Body>Are you sure want to Logout</Modal.Body>
+        <Modal.Footer>
+          <Button variant="secondary" onClick={setCloseOut}>
+            Cancel
+          </Button>
+          <Button variant="primary" onClick={handleLogout}>
+            Logout
+          </Button>
+        </Modal.Footer>
+      </Modal>
+
+      <div className="side-box rp col-lg-3">
+        <div className="side-content d-flex flex-column justify-content-between py-lg-5 pe-lg-4">
           <div>
             <div
               className="hover-pointer side-content__dashboard mb-5 d-flex align-items-center"
               onClick={() => toDashboardPage()}
               onMouseOver={() => mouseOver("menu1")}
               onMouseOut={() => mouseOut("menu1")}
+              style={
+                active === "menu1" ? { borderLeft: "5px solid #6379F4" } : null
+              }
             >
-              <GridSVG
-                color={
-                  active === "menu1"
-                    ? "#6379F4"
-                    : hover === "menu1"
-                    ? "#8591d4"
-                    : "rgba(58, 61, 66, 0.8)"
-                }
-              />
+              <span className="ms-4">
+                <GridSVG
+                  color={
+                    active === "menu1"
+                      ? "#6379F4"
+                      : hover === "menu1"
+                      ? "#8591d4"
+                      : "rgba(58, 61, 66, 0.8)"
+                  }
+                />
+              </span>
               <span
                 style={
                   active === "menu1"
@@ -122,16 +165,21 @@ export default function Sidebar(props) {
               onClick={() => toTransverPage()}
               onMouseOver={() => mouseOver("menu2")}
               onMouseOut={() => mouseOut("menu2")}
+              style={
+                active === "menu2" ? { borderLeft: "5px solid #6379F4" } : null
+              }
             >
-              <ArrowUpSVG
-                color={
-                  active === "menu2"
-                    ? "#6379F4"
-                    : hover === "menu2"
-                    ? "#8591d4"
-                    : "rgba(58, 61, 66, 0.8)"
-                }
-              />
+              <span className="ms-4">
+                <ArrowUpSVG
+                  color={
+                    active === "menu2"
+                      ? "#6379F4"
+                      : hover === "menu2"
+                      ? "#8591d4"
+                      : "rgba(58, 61, 66, 0.8)"
+                  }
+                />
+              </span>
               <span
                 style={
                   active === "menu2"
@@ -145,20 +193,25 @@ export default function Sidebar(props) {
               </span>
             </div>
             <div
-              className="hover-pointer side-content__topup mb-5 d-flex align-items-center"
+              className="hover-pointer side-content__topup  mb-5 d-flex align-items-center"
               onClick={() => handleTopUp()}
               onMouseOver={() => mouseOver("menu3")}
               onMouseOut={() => mouseOut("menu3")}
+              style={
+                active === "menu3" ? { borderLeft: "5px solid #6379F4" } : null
+              }
             >
-              <PlusSVG
-                color={
-                  active === "menu3"
-                    ? "#6379F4"
-                    : hover === "menu3"
-                    ? "#8591d4"
-                    : "rgba(58, 61, 66, 0.8)"
-                }
-              />
+              <span className="ms-4">
+                <PlusSVG
+                  color={
+                    active === "menu3"
+                      ? "#6379F4"
+                      : hover === "menu3"
+                      ? "#8591d4"
+                      : "rgba(58, 61, 66, 0.8)"
+                  }
+                />
+              </span>
               <span
                 style={
                   active === "menu3"
@@ -176,16 +229,21 @@ export default function Sidebar(props) {
               onClick={() => toProfile()}
               onMouseOver={() => mouseOver("menu4")}
               onMouseOut={() => mouseOut("menu4")}
+              style={
+                active === "menu4" ? { borderLeft: "5px solid #6379F4" } : null
+              }
             >
-              <UserSVG
-                color={
-                  active === "menu4"
-                    ? "#6379F4"
-                    : hover === "menu4"
-                    ? "#8591d4"
-                    : "rgba(58, 61, 66, 0.8)"
-                }
-              />
+              <span className="ms-4">
+                <UserSVG
+                  color={
+                    active === "menu4"
+                      ? "#6379F4"
+                      : hover === "menu4"
+                      ? "#8591d4"
+                      : "rgba(58, 61, 66, 0.8)"
+                  }
+                />
+              </span>
               <span
                 style={
                   active === "menu4"
@@ -201,19 +259,21 @@ export default function Sidebar(props) {
           </div>
           <div
             className="hover-pointer side-content__logout d-flex align-items-center"
-            onClick={() => handleLogout()}
+            onClick={() => setShowOut()}
             onMouseOver={() => mouseOver("menu5")}
             onMouseOut={() => mouseOut("menu5")}
           >
-            <LogoutSVG
-              color={
-                active === "menu5"
-                  ? "#6379F4"
-                  : hover === "menu5"
-                  ? "#8591d4"
-                  : "rgba(58, 61, 66, 0.8)"
-              }
-            />
+            <span className="ms-4">
+              <LogoutSVG
+                color={
+                  active === "menu5"
+                    ? "#6379F4"
+                    : hover === "menu5"
+                    ? "#8591d4"
+                    : "rgba(58, 61, 66, 0.8)"
+                }
+              />
+            </span>
             <span
               style={
                 active === "menu5"

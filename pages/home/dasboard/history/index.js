@@ -1,4 +1,4 @@
-import React, { useState, useEffct } from "react";
+import React, { useState, useEffect } from "react";
 import Layout from "components/Layout";
 import Sidebar from "components/Sidebar";
 import { getDataCookie } from "middleware/authPage";
@@ -10,6 +10,7 @@ import {
   setTransferData,
 } from "redux/action/transaction";
 import { connect } from "react-redux";
+import Paginate from "react-paginate";
 
 export async function getServerSideProps(context) {
   const dataCookie = await getDataCookie(context);
@@ -45,18 +46,45 @@ export async function getServerSideProps(context) {
 function DasboardHistory(props) {
   const router = useRouter();
   const [historyList, setHistoryList] = useState(props.historyList);
+  const [page, setPage] = useState(1);
 
   const handleFilter = (event) => {
-    props
-      .getTransactionHistory({ page: 1, filter: event.target.value })
-      .then((res) => {
-        console.log(res.value.data.data);
-        setHistoryList(res.value.data.data);
-      });
+    router.push(`/home/dasboard/history?filter=${event.target.value}&page=1`);
+    // props
+    //   .getTransactionHistory({ page: 1, filter: event.target.value })
+    //   .then((res) => {
+    //     console.log(res.value.data.data);
+    //     setHistoryList(res.value.data.data);
+    //   });
   };
 
   console.log(router.query);
   console.log(props.historyList);
+
+  const handlePagination = (event) => {
+    setPage(event.selected + 1);
+    router.push(
+      `/home/dasboard/history?filter=${
+        router.query.filter ? router.query.filter : ""
+      }&page=${event.selected + 1}`
+    );
+  };
+
+  console.log(router.query);
+
+  useEffect(() => {
+    props
+      .getTransactionHistory({
+        page: router.query.page,
+        filter: router.query.filter,
+      })
+      .then((res) => {
+        console.log(res.value.data.data);
+        setHistoryList(res.value.data.data);
+        setPage(res.value.data.pagination.totalPage);
+      });
+  }, [router.query]);
+
   return (
     <>
       <Layout title="Dashboard | History">
@@ -132,6 +160,18 @@ function DasboardHistory(props) {
             </div>
           </div>
         </div>
+
+        <Paginate
+          previousLabel={null}
+          nextLabel={null}
+          breakLabel={"..."}
+          pageCount={page}
+          onPageChange={(event) => handlePagination(event)}
+          containerClassName={"pagination"}
+          disabledClassName={"pagination__disabled"}
+          activeClassName={"pagination__active"}
+          className="justify-content-center pagination d-flex align-items-center"
+        />
       </Layout>
     </>
   );
