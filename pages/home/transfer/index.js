@@ -21,20 +21,16 @@ export async function getServerSideProps(context) {
   }
 
   const allUser = await axios
-    .get(`/user?page=1&limit=5&search=&sort=`, {
+    .get(`/user?page=1&limit=3&search=&sort=`, {
       headers: {
         Authorization: `Bearer ${dataCookie.token}`,
       },
     })
     .then((res) => {
-      // console.log("THEN");
-      // console.log("DATA", res.data.data);
       console.log(res.data);
       return { data: res.data.data, pagination: res.data.pagination };
     })
     .catch((err) => {
-      // console.log("CATCH");
-      // console.log(err.response);
       return [];
     });
   return {
@@ -45,60 +41,56 @@ export async function getServerSideProps(context) {
 }
 
 function Dasboard(props) {
-  // console.log(props.dataUser);
-  const [dataAllUser, setDataAllUser] = useState(props.allUser);
+  // console.log(props.allUser);
+  const [totalPage, setTotalPage] = useState(
+    props.allUser.pagination.totalPage
+  );
+  const [dataAllUser, setDataAllUser] = useState(props.allUser.data);
   const router = useRouter();
   console.log(router.query);
-
-  const handlePageClick = (event) => {
-    const newOffset = (event.selected * itemsPerPage) % items.length;
-    console.log(
-      `User requested page number ${event.selected}, which is offset ${newOffset}`
-    );
-    setItemOffset(newOffset);
-  };
 
   const [page, setPage] = useState(1);
 
   const handlePagination = (event) => {
     setPage(event.selected + 1);
     router.push(
-      `/home/transfer?search=${router.query.search}&page=${event.selected + 1}`
+      `/home/transfer?search=${
+        router.query.search ? router.query.search : ""
+      }&page=${event.selected + 1}`
     );
   };
 
   useEffect(() => {
-    props
-      .getAllUser({ search: router.query.search, page: router.query.page })
-      .then((res) => {
-        console.log(res);
-      })
-      .catch((err) => {
-        console.log(err);
-      });
+    router.push("/home/transfer?search=&page=1");
   }, []);
 
   useEffect(() => {
-    setPage = router.query.page;
-    props
-      .getAllUser({ search: router.query.search, page: router.query.page })
-      .then((res) => {
-        console.log(res);
-      })
-      .catch((err) => {
-        console.log(err);
-      });
+    if (router.query.page) {
+      setPage = router.query.page;
+      props
+        .getAllUser({ search: router.query.search, page: router.query.page })
+        .then((res) => {
+          setTotalPage(res.value.data.pagination.totalPage);
+          console.log(res);
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    }
   }, [router.query.page]);
 
   useEffect(() => {
-    props
-      .getAllUser({ search: router.query.search, page: 1 })
-      .then((res) => {
-        console.log(res);
-      })
-      .catch((err) => {
-        console.log(err);
-      });
+    if (router.query.search) {
+      props
+        .getAllUser({ search: router.query.search, page: 1 })
+        .then((res) => {
+          console.log(res);
+          setTotalPage(res.value.data.pagination.totalPage);
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    }
   }, [router.query.search]);
 
   return (
@@ -116,7 +108,7 @@ function Dasboard(props) {
               previousLabel={null}
               nextLabel={null}
               breakLabel={"..."}
-              pageCount={props.user.pageInfo.totalPage}
+              pageCount={totalPage}
               onPageChange={(event) => handlePagination(event)}
               containerClassName={"pagination"}
               disabledClassName={"pagination__disabled"}

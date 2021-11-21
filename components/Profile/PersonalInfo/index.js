@@ -4,6 +4,7 @@ import React, { useEffect, useState } from "react";
 import { connect } from "react-redux";
 import { ToastContainer, toast } from "react-toastify";
 import { getDataUser, updateDataUser } from "redux/action/user";
+import Link from "next/link";
 
 function PersonalInfo(props) {
   const router = useRouter();
@@ -97,12 +98,19 @@ function PersonalInfo(props) {
           </div>
         </div>
 
-        <div className="sec-card p-4 my-4">
-          <div className="fw-400 fs-16 color-gray86">Phone Number</div>
-          <div className="fw-700 fs-22 color-gray5b">
-            <span className="fw-700 fs-22 color-gray5b col-12">
-              {dataUserLogin.noTelp}
-            </span>
+        <div className="sec-card p-4 my-4 d-flex justify-content-between align-items-center">
+          <div className="">
+            <div className="fw-400 fs-16 color-gray86">Phone Number</div>
+            <div className="fw-700 fs-22 color-gray5b">
+              <span className="fw-700 fs-22 color-gray5b col-12">
+                {dataUserLogin.noTelp}
+              </span>
+            </div>
+          </div>
+          <div className="" style={{ color: "#6379F4" }}>
+            <Link href="" style={{ color: "#6379F4" }}>
+              Manage
+            </Link>
           </div>
         </div>
       </div>

@@ -23,7 +23,7 @@ export default function Sidebar(props) {
 
   const toTransverPage = () => {
     handleChangePage("menu2");
-    router.push("/home/transfer");
+    router.push("/home/transfer?search=&page=1");
   };
 
   const toProfile = () => {

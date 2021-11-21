@@ -50,3 +50,17 @@ export const changePass = (data) => {
     }),
   };
 };
+
+export const updateImageUser = (data) => {
+  return {
+    type: "UPDATE_IMAGE_USER",
+    payload: axios.patch(`/user/image/${data.id}`, data.image),
+  };
+};
+
+export const deleteImageUser = (data) => {
+  return {
+    type: "DELTE_IMAGE_USER",
+    payload: axios.delete(`/user/image/${data}`),
+  };
+};

@@ -138,6 +138,40 @@ const user = (state = initialScale, action) => {
         ...state,
       };
     }
+    case "UPDATE_IMAGE_USER_PENDING": {
+      return {
+        ...state,
+      };
+    }
+    case "UPDATE_IMAGE_USER_FULFILLED": {
+      return {
+        ...state,
+      };
+    }
+
+    case "UPDATE_IMAGE_USER_REJECTED": {
+      return {
+        ...state,
+      };
+    }
+
+    case "DELTE_IMAGE_USER_FULFILLED": {
+      return {
+        ...state,
+      };
+    }
+
+    case "DELTE_IMAGE_USER_REJECTED": {
+      return {
+        ...state,
+      };
+    }
+
+    case "DELTE_IMAGE_USER_PENDING": {
+      return {
+        ...state,
+      };
+    }
 
     default: {
       return state;

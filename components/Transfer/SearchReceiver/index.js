@@ -5,6 +5,7 @@ import { getAllUser, getDataReceiver } from "redux/action/user";
 import { connect } from "react-redux";
 
 function SearchReceiver(props) {
+  console.log(props.allUser);
   const [allUser, setAllUser] = useState(props.allUser);
 
   const handleSelectedReceiver = (id) => {
@@ -18,22 +19,13 @@ function SearchReceiver(props) {
 
   const handleSearch = (e) => {
     if (e.key === "Enter") {
-      router.push(`/home/transfer?search=${search}&page=${router.query.page}`);
+      router.push(
+        `/home/transfer?search=${search}&page=${
+          router.query.page ? router.query.page : 1
+        }`
+      );
     }
   };
-
-  // useEffect(() => {
-  //   if (router.query.search !== undefined) {
-  //     props
-  //       .getAllUser({ search: router.query.search, page: router.query.page })
-  //       .then((res) => {
-  //         setAllUser(res.value.data.data);
-  //       })
-  //       .catch((err) => {
-  //         setAllUser([]);
-  //       });
-  //   }
-  // }, [router.query]);
 
   useEffect(() => {
     setAllUser(props.user.dataAllUser);
