@@ -75,17 +75,17 @@ function ChangeNewPin(props) {
       <ToastContainer />
       <div
         className="profile-menu__cont  bg-white rpr p-4"
-        style={{ height: "100%" }}
+        style={{ height: "100%", minHeight: "600px" }}
       >
         <div className="fw-700 fs-18 ">Change PIN</div>
         <div className="col-12 my-4 mb-5">
-          <div className="fw-400 fs-16 color-gray86 col-6 mb-5">
+          <div className="fw-400 fs-16 color-gray86 col-lg-6 col-12 mb-5">
             Enter your current 6 digits Zwallet PIN below to continue to the
             next steps.
           </div>
         </div>
         <div className="col-12 d-flex justify-content-center">
-          <div className="col-8 ">
+          <div className="col-lg-8 col-12 ">
             <form>
               <div className="input-pin my-5">
                 <input

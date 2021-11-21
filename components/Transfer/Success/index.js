@@ -19,7 +19,7 @@ function TransferSuccess(props) {
 
   const backToHome = () => {
     props.getDataUser(props.user.dataUserLogin.id).then((res) => {
-      router.push("/home/dasboard");
+      router.push("/dashboard");
     });
   };
 
@@ -35,9 +35,9 @@ function TransferSuccess(props) {
   return (
     <>
       <ToastContainer />
-      <div className="col-12 rpr">
+      <div className="col-12 ps-lg-3 p-0 rpr">
         <div
-          className="search-receiver__label rds-20 sec-card p-lg-4"
+          className="search-receiver__label p-4 rds-20 sec-card p-lg-4"
           style={{ height: "100%" }}
         >
           <div className="text-center d-flex flex-column justify-content-center align-items-center mt-4">
@@ -80,12 +80,16 @@ function TransferSuccess(props) {
 
             <span className="fs-18 fw-700 col-12 my-5">Transfer To</span>
 
-            <div className="history-list d-flex align-items-center my-5 sec-card p-lg-4">
+            <div className="history-list p-3 d-flex align-items-center my-5 sec-card p-lg-4">
               <div className="history-list__image-user">
                 <img
                   src={
                     dataReceiver.image
-                      ? `http://localhost:3001/uploads/${dataReceiver.image}`
+                      ? `${
+                          process.env.STATUS === "dev"
+                            ? process.env.BE_DEV
+                            : process.env.BE_PROD
+                        }/uploads/${dataReceiver.image}`
                       : "/assets/image/default-profile.jpg"
                   }
                   alt=""
@@ -106,10 +110,10 @@ function TransferSuccess(props) {
             </div>
 
             <div className="text-center">
-              <div className="d-flex justify-content-end">
+              <div className="d-flex row justify-content-lg-end justify-content-between">
                 <button
                   className={
-                    "btn-export color-prim px-5 py-3 mx-2 rds-12 mt-2 fw-700 fs-18"
+                    "btn-export col-lg-3 col-12 py-3 my-2 color-prim px-lg-5 py-lg-3 mx-lg-2 rds-12 mt-2 fw-700 fs-18"
                   }
                   onClick={() => exportTrans()}
                 >
@@ -117,7 +121,7 @@ function TransferSuccess(props) {
                 </button>
                 <button
                   className={
-                    "btn-enable px-5 py-3 mx-2 rds-12 mt-2 fw-700 fs-18"
+                    "btn-enable col-lg-3 col-12 py-3 my-2 px-5 py-lg-3 mx-lg-2 rds-12 mt-2 fw-700 fs-18"
                   }
                   onClick={() => backToHome()}
                 >

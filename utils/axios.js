@@ -2,7 +2,8 @@ import axiosDef from "axios";
 import Cookie from "js-cookie";
 
 const axios = axiosDef.create({
-  baseURL: "http://localhost:3001",
+  baseURL:
+    process.env.STATUS === "dev" ? process.env.BE_DEV : process.env.BE_PROD,
 });
 
 // Add a request interceptor

@@ -62,14 +62,17 @@ function Statistic(props) {
       setDataBalance(res.value.data.data);
     });
 
-    props.getTransactionHistory({ page: 1, filter: "WEEK" }).then((res) => {
-      console.log(res.value.data.data);
-    });
+    props
+      .getTransactionHistory({ page: 1, filter: "WEEK" })
+      .then((res) => {
+        console.log(res.value.data.data);
+      })
+      .catch((err) => console.log(err.response));
   }, []);
 
   return (
     <div className="statistic-out row rpr mt-3">
-      <div className="statistic-box row p-4 col-lg-7 d-flex justify-content-between">
+      <div className="statistic-box row p-4 col-lg-7 col-12 d-flex justify-content-between">
         <div className="col-12 d-flex justify-content-between">
           <div className="statistic-income">
             <div className="arrow-up-to-down text-start">
@@ -88,17 +91,17 @@ function Statistic(props) {
             </div>
           </div>
         </div>
-        <div className="col-12 mt-5">
+        <div className="col-lg-12 mt-5">
           <Bar data={data} />
         </div>
       </div>
-      <div className="col-5 rpr">
+      <div className="col-lg-5 col-12 my-3 my-lg-0 p-0 ps-lg-3 pe-lg-0">
         <div className="history-box p-4">
           <div className="col-12 d-flex justify-content-between">
             <span>Transaction History</span>
 
             <Link
-              href="/home/dasboard/history"
+              href="/history?filter=&page=1"
               style={{ textDecoration: "none" }}
             >
               See All
@@ -116,7 +119,11 @@ function Statistic(props) {
                       <img
                         src={
                           item.image
-                            ? `http://localhost:3001/uploads/${item.image}`
+                            ? `${
+                                process.env.STATUS === "dev"
+                                  ? process.env.BE_DEV
+                                  : process.env.BE_PROD
+                              }/uploads/${item.image}`
                             : "/assets/image/default-profile.jpg"
                         }
                         alt="userProfiles"

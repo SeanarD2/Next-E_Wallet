@@ -20,7 +20,7 @@ function SearchReceiver(props) {
   const handleSearch = (e) => {
     if (e.key === "Enter") {
       router.push(
-        `/home/transfer?search=${search}&page=${
+        `/transfer?search=${search}&page=${
           router.query.page ? router.query.page : 1
         }`
       );
@@ -32,13 +32,13 @@ function SearchReceiver(props) {
   }, [props.user.dataAllUser]);
 
   return (
-    <div className="col-12 rpr">
+    <div className="col-12 p-0 ps-lg-3">
       <div
-        className="search-receiver__label rds-20 sec-card p-lg-4"
-        style={{ height: "100%" }}
+        className="search-receiver__label rds-20 sec-card p-4 p-lg-4"
+        style={{ height: "100%", minHeight: "600px" }}
       >
         <span className="fs-18 fw-700 col-12">Search Receiver</span>
-        <div className="mt-4 py-lg-2 px-lg-3 col-12 search-receiver__input d-flex align-items-center">
+        <div className="mt-4 py-lg-2 py-2 px-3 px-lg-3 col-12 search-receiver__input d-flex align-items-center">
           <img src="/assets/image/search.svg" alt="search" className="me-3" />
           <input
             className=""
@@ -54,14 +54,18 @@ function SearchReceiver(props) {
             allUser.map((item, index) => (
               <div
                 key={index}
-                className="hover-pointer history-list d-flex align-items-center my-5 sec-card p-lg-4"
+                className="hover-pointer history-list d-flex align-items-center my-5 sec-card p-3 p-lg-4"
                 onClick={() => handleSelectedReceiver(item.id)}
               >
                 <div className="history-list__image-user">
                   <img
                     src={
                       item.image
-                        ? `http://localhost:3001/uploads/${item.image}`
+                        ? `${
+                            process.env.STATUS === "dev"
+                              ? process.env.BE_DEV
+                              : process.env.BE_PROD
+                          }/uploads/${item.image}`
                         : "/assets/image/default-profile.jpg"
                     }
                     alt=""

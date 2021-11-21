@@ -76,7 +76,7 @@ function ChangePasswordComp(props) {
       >
         <div className="fw-700 fs-18 ">Change Password</div>
         <div className="col-12 my-4 mb-5">
-          <div className="fw-400 fs-16 color-gray86 col-6 mb-5">
+          <div className="fw-400 fs-16 color-gray86 col-lg-6 col-12 mb-5">
             You must enter your current password and then type your new password
             twice.
           </div>
@@ -84,7 +84,7 @@ function ChangePasswordComp(props) {
         <form>
           <div className="col-12 row d-flex justify-content-center mt-5">
             <div
-              className="col-7 d-flex justify-content-center align-items-center pb-2 my-4"
+              className="col-lg-7 col-12 d-flex justify-content-center align-items-center pb-2 my-4"
               style={{ borderBottom: "1.5px solid #A9A9A999" }}
             >
               <img
@@ -121,7 +121,7 @@ function ChangePasswordComp(props) {
             </div>
 
             <div
-              className="col-7 d-flex justify-content-center align-items-center pb-2 my-4"
+              className="col-lg-7 col-12 d-flex justify-content-center align-items-center pb-2 my-4"
               style={{ borderBottom: "1.5px solid #A9A9A999" }}
             >
               <img
@@ -158,7 +158,7 @@ function ChangePasswordComp(props) {
             </div>
 
             <div
-              className="col-7 d-flex justify-content-center align-items-center pb-2 my-4"
+              className="col-lg-7 col-12 d-flex justify-content-center align-items-center pb-2 my-4"
               style={{ borderBottom: "1.5px solid #A9A9A999" }}
             >
               <img
@@ -197,8 +197,8 @@ function ChangePasswordComp(props) {
             <button
               className={
                 btnDisable
-                  ? "btn-disable col-7 px-5 py-3 rds-12 mt-5"
-                  : "btn-enable col-7 px-5 py-3 rds-12 mt-5"
+                  ? "btn-disable col-lg-7 col-12 px-5 py-3 rds-12 mt-5"
+                  : "btn-enable col-lg-7 col-12 px-5 py-3 rds-12 mt-5"
               }
               onClick={(event) => handleSubmit(event)}
               disabled={btnDisable}

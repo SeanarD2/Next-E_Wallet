@@ -57,7 +57,7 @@ function Login(props) {
         console.log(res.value.data.data.pin);
         !res.value.data.data.pin
           ? router.push("/create-pin")
-          : router.push("/home/dasboard");
+          : router.push("/dashboard");
       })
       .catch((err) => {
         console.log(err);
@@ -108,10 +108,10 @@ function Login(props) {
         <title>Z-Wallet | Login</title>
       </Head>
       <div className="container-fluid d-flex rp">
-        <div className="login-left-side d-flex justify-content-center">
+        <div className="login-left-side d-lg-flex d-none justify-content-center">
           <div className="color-white login-left-side__content">
             <h3>Zwallet</h3>
-            <img src="../assets/image/loginPage/2phone.png" />
+            <img src="../assets/image/loginPage/2phone.png" alt="" />
             <h3 className="my-4">App that Covering Banking Needs.</h3>
             <p className="zwalet-desc">
               Zwallet is an application that focussing in banking needs for all
@@ -122,7 +122,10 @@ function Login(props) {
           </div>
         </div>
 
-        <div className="login-right-side pr-lg-5  p-lg-5 text-start">
+        <div className="login-right-side pr-lg-5 p-4 p-lg-5 text-start">
+          <div className="text-center d-block d-lg-none mt-5 mb-5">
+            <img src="/assets/image/home/Zwallet.png" alt="" />
+          </div>
           <h3 className="text-start f-nunito-sans fs-24 fw-700 login-title my-4 right-side__text-header">
             Start Accessing Banking Needs With All Devices and All Platforms
             With 30.000+ Users

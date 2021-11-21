@@ -18,7 +18,11 @@ function Header(props) {
               <img
                 src={
                   dataUserLogin.image
-                    ? `http://localhost:3001/uploads/${dataUserLogin.image}`
+                    ? `${
+                        process.env.STATUS === "dev"
+                          ? process.env.BE_DEV
+                          : process.env.BE_PROD
+                      }/uploads/${dataUserLogin.image}`
                     : "/assets/image/default-profile.jpg"
                 }
                 alt=""

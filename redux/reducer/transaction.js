@@ -59,7 +59,7 @@ const transaction = (state = initialScale, action) => {
     case "GET_TRANSACTION_HISTORY_REJECTED": {
       return {
         ...state,
-        history: {},
+        history: [],
         isLoading: false,
         isError: true,
         msg: action.payload.response.data.message,

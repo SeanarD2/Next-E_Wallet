@@ -54,43 +54,39 @@ function Dasboard(props) {
   const handlePagination = (event) => {
     setPage(event.selected + 1);
     router.push(
-      `/home/transfer?search=${
+      `/transfer?search=${
         router.query.search ? router.query.search : ""
       }&page=${event.selected + 1}`
     );
   };
 
   useEffect(() => {
-    router.push("/home/transfer?search=&page=1");
+    router.push("/transfer?search=&page=1");
   }, []);
 
   useEffect(() => {
-    if (router.query.page) {
-      setPage = router.query.page;
-      props
-        .getAllUser({ search: router.query.search, page: router.query.page })
-        .then((res) => {
-          setTotalPage(res.value.data.pagination.totalPage);
-          console.log(res);
-        })
-        .catch((err) => {
-          console.log(err);
-        });
-    }
+    setPage = router.query.page;
+    props
+      .getAllUser({ search: router.query.search, page: router.query.page })
+      .then((res) => {
+        setTotalPage(res.value.data.pagination.totalPage);
+        console.log(res);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
   }, [router.query.page]);
 
   useEffect(() => {
-    if (router.query.search) {
-      props
-        .getAllUser({ search: router.query.search, page: 1 })
-        .then((res) => {
-          console.log(res);
-          setTotalPage(res.value.data.pagination.totalPage);
-        })
-        .catch((err) => {
-          console.log(err);
-        });
-    }
+    props
+      .getAllUser({ search: router.query.search, page: 1 })
+      .then((res) => {
+        console.log(res);
+        setTotalPage(res.value.data.pagination.totalPage);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
   }, [router.query.search]);
 
   return (

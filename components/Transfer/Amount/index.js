@@ -38,20 +38,24 @@ function Amount(props) {
   };
 
   return (
-    <div className="col-12 rpr">
+    <div className="col-12 p-0 ps-lg-3">
       <div
-        className="search-receiver__label rds-20 sec-card p-lg-4"
+        className="search-receiver__label rds-20 sec-card p-4 p-lg-4"
         style={{ height: "100%" }}
       >
         <span className="fs-18 fw-700 col-12">Transfer Money</span>
 
         <div className="my-5">
-          <div className="history-list d-flex align-items-center my-5 sec-card p-lg-4">
+          <div className="history-list p-3 d-flex align-items-center my-5 sec-card p-lg-4">
             <div className="history-list__image-user">
               <img
                 src={
                   dataReceiver.image
-                    ? `http://localhost:3001/uploads/${dataReceiver.image}`
+                    ? `${
+                        process.env.STATUS === "dev"
+                          ? process.env.BE_DEV
+                          : process.env.BE_PROD
+                      }/uploads/${dataReceiver.image}`
                     : "/assets/image/default-profile.jpg"
                 }
                 alt=""
@@ -70,7 +74,7 @@ function Amount(props) {
               )}
             </div>
           </div>
-          <div className="col-6 fw-400 fs-16 lh-28 mb-5">
+          <div className="col-lg-6 col-12 fw-400 fs-16 lh-28 mb-5">
             Type the amount you want to transfer and then press continue to the
             next steps.
           </div>
@@ -80,7 +84,7 @@ function Amount(props) {
               <input
                 type="number"
                 placeholder="1001"
-                className="fs-42 fw-700 text-center amont-input"
+                className="fs-42 fw-700 col-12 text-center amont-input"
                 style={
                   transfer.amount > 1000 &&
                   transfer.amount <= dataUserLogin.balance
@@ -94,10 +98,9 @@ function Amount(props) {
               <div className="text-center d-flex justify-content-center">
                 <div
                   style={{
-                    width: "50%",
                     borderBottom: "1.5px solid #A9A9A999",
                   }}
-                  className="text-center pb-2"
+                  className="text-center col-lg-5 col-12 pb-2"
                 >
                   <img src="/assets/image/edit.svg" alt="" className="me-3" />
                   <input

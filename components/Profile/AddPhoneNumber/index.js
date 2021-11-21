@@ -55,7 +55,8 @@ function AddPhoneNumber(props) {
         props.getDataUser(props.user.dataUserLogin.id);
       })
       .catch((err) => {
-        console.log(err);
+        toast.error(err.response.data.msg);
+        console.log(err.response.data.msg);
       });
   };
 

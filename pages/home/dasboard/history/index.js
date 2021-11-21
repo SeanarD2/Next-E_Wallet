@@ -11,6 +11,7 @@ import {
 } from "redux/action/transaction";
 import { connect } from "react-redux";
 import Paginate from "react-paginate";
+import { toast, ToastContainer } from "react-toastify";
 
 export async function getServerSideProps(context) {
   const dataCookie = await getDataCookie(context);
@@ -49,7 +50,7 @@ function DasboardHistory(props) {
   const [page, setPage] = useState(1);
 
   const handleFilter = (event) => {
-    router.push(`/home/dasboard/history?filter=${event.target.value}&page=1`);
+    router.push(`/history?filter=${event.target.value}&page=1`);
     // props
     //   .getTransactionHistory({ page: 1, filter: event.target.value })
     //   .then((res) => {
@@ -64,9 +65,9 @@ function DasboardHistory(props) {
   const handlePagination = (event) => {
     setPage(event.selected + 1);
     router.push(
-      `/home/dasboard/history?filter=${
-        router.query.filter ? router.query.filter : ""
-      }&page=${event.selected + 1}`
+      `/history?filter=${router.query.filter ? router.query.filter : ""}&page=${
+        event.selected + 1
+      }`
     );
   };
 
@@ -82,18 +83,25 @@ function DasboardHistory(props) {
         console.log(res.value.data.data);
         setHistoryList(res.value.data.data);
         setPage(res.value.data.pagination.totalPage);
+      })
+      .catch((err) => {
+        toast.error(err.value.data.msg);
       });
   }, [router.query]);
 
   return (
     <>
+      <ToastContainer />
       <Layout title="Dashboard | History">
         <div className="container">
           <div className="row rp">
             <Sidebar activePage="menu1" />
             <div className="row col-lg-9 rp">
-              <div className="history-out rpr" style={{ height: "100%" }}>
-                <div className="history-box p-lg-4">
+              <div
+                className="history-out p-0 ps-lg-3 rpr"
+                style={{ height: "100%" }}
+              >
+                <div className="history-box p-4 p-lg-4">
                   <div className="d-flex justify-content-between align-items-center mb-5">
                     <span className="fw-700 fs-18">Transaction History</span>
                     <select
@@ -117,7 +125,11 @@ function DasboardHistory(props) {
                             <img
                               src={
                                 item.image
-                                  ? `http://localhost:3001/uploads/${item.image}`
+                                  ? `${
+                                      process.env.STATUS === "dev"
+                                        ? process.env.BE_DEV
+                                        : process.env.BE_PROD
+                                    }/uploads/${item.image}`
                                   : "/assets/image/default-profile.jpg"
                               }
                               alt=""

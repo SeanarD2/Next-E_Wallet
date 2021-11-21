@@ -1,6 +1,6 @@
 .footer-container {
   background: #6379f4;
-  height: 68px;
+  min-height: 68px;
   color: white;
 }
 

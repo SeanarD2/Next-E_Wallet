@@ -25,6 +25,7 @@ export async function getServerSideProps(context) {
 
 export default function CreateNewPass(props) {
   const router = useRouter();
+  const [btnDisable, setBtnDisable] = useState(false);
 
   // console.log(router.query.key);
 
@@ -37,15 +38,19 @@ export default function CreateNewPass(props) {
   const handleSubmit = (e) => {
     e.preventDefault();
     // console.log(form);
+    setBtnDisable(true);
     axios
       .patch("/auth/reset-password", form)
       .then((res) => {
         toast.success(res.data.msg);
         setTimeout(function () {
           router.push("/login");
-        }, 5000);
+        }, 3000);
       })
-      .catch((err) => {});
+      .catch((err) => {
+        toast.error(err.response.data.msg);
+        setBtnDisable(false);
+      });
   };
 
   const handleChangeText = (e) => {
@@ -57,11 +62,6 @@ export default function CreateNewPass(props) {
 
   const handleShowPass = () => {
     showPass ? setShowPass(false) : setShowPass(true);
-  };
-
-  const errMsg = (event, msg) => {
-    event.preventDefault();
-    toast.error(msg);
   };
 
   return (
@@ -149,6 +149,7 @@ export default function CreateNewPass(props) {
                   ? "btn btn-enable col-12 py-3"
                   : "btn btn-disable col-12 py-3"
               }
+              disabled={btnDisable}
             >
               Confirm
             </button>

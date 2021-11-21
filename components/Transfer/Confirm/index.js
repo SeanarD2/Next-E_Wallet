@@ -157,18 +157,22 @@ function Confirm(props) {
       </Modal>
       <div className="col-12 rpr">
         <div
-          className="search-receiver__label rds-20 sec-card p-lg-4"
+          className="search-receiver__label p-4 rds-20 sec-card p-lg-4"
           style={{ height: "100%" }}
         >
           <span className="fs-18 fw-700 col-12">Transfer To</span>
 
           <div className="my-5">
-            <div className="history-list d-flex align-items-center my-5 sec-card p-lg-4">
+            <div className="history-list d-flex p-3 align-items-center my-5 sec-card p-lg-4">
               <div className="history-list__image-user">
                 <img
                   src={
                     dataReceiver.image
-                      ? `http://localhost:3001/uploads/${dataReceiver.image}`
+                      ? `${
+                          process.env.STATUS === "dev"
+                            ? process.env.BE_DEV
+                            : process.env.BE_PROD
+                        }/uploads/${dataReceiver.image}`
                       : "/assets/image/default-profile.jpg"
                   }
                   alt=""

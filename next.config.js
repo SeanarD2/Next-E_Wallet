@@ -1,7 +1,9 @@
 module.exports = {
   reactStrictMode: true,
   env: {
-    URL_BE: "https://jsonplaceholder.typicode.com/",
+    STATUS: "dev",
+    BE_DEV: "http://localhost:3001",
+    BE_PROD: "https://jsonplaceholder.typicode.com/",
   },
   async rewrites() {
     return [
@@ -28,6 +30,32 @@ module.exports = {
       {
         source: "/create-new-pass/:key",
         destination: "/auth/create-new-pass/:key",
+      },
+
+      {
+        source: "/dashboard",
+        destination: "/home/dasboard",
+      },
+      {
+        source: "/history",
+        destination: "/home/dasboard/history",
+      },
+
+      {
+        source: "/transfer",
+        destination: "/home/transfer",
+      },
+      {
+        source: "/transfer/amount",
+        destination: "/home/transfer/amount",
+      },
+      {
+        source: "/transfer/confirm",
+        destination: "/home/transfer/confirm",
+      },
+      {
+        source: "/transfer/confirm",
+        destination: "/home/transfer/confirm",
       },
     ];
   },

@@ -46,7 +46,7 @@ function PersonalInfo(props) {
       >
         <div className="fw-700 fs-18 ">Personal Information</div>
         <div className="col-12 my-4">
-          <div className="fw-400 fs-16 color-gray86 col-6">
+          <div className="fw-400 fs-16 color-gray86 col-lg-6 col-12">
             We got your personal information from the sign up proccess. If you
             want to make changes on your information, contact our support.
           </div>
@@ -91,8 +91,8 @@ function PersonalInfo(props) {
 
         <div className="sec-card p-4 my-4">
           <div className="fw-400 fs-16 color-gray86">Verified E-mail</div>
-          <div className="fw-700 fs-22 color-gray5b">
-            <span className="fw-700 fs-22 color-gray5b col-12">
+          <div className="fw-700 fs-22 color-gray5b text-truncate">
+            <span className="fw-700 fs-22 color-gray5b col-12 ">
               {dataUserLogin.email}
             </span>
           </div>
@@ -102,7 +102,7 @@ function PersonalInfo(props) {
           <div className="">
             <div className="fw-400 fs-16 color-gray86">Phone Number</div>
             <div className="fw-700 fs-22 color-gray5b">
-              <span className="fw-700 fs-22 color-gray5b col-12">
+              <span className="fw-700 fs-22 color-gray5b">
                 {dataUserLogin.noTelp}
               </span>
             </div>

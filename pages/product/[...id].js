@@ -5,7 +5,11 @@ import { useRouter } from "next/router";
 
 export default function Product() {
   const router = useRouter();
-  // console.log(process.env.URL_BE);
+
+  console.log(process.env.STATUS);
+  console.log(process.env.BE_PROD);
+  console.log(process.env.BE_DEV);
+
   // console.log(router.query);
   return (
     <Layout title="Product Details">

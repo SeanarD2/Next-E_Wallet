@@ -31,9 +31,12 @@ export default function ResetPassword() {
     linkDirect: "http://localhost:3000/create-new-pass",
   });
 
+  const [btnDisable, setBtnDisable] = useState(false);
+
   const handleSubmit = (e) => {
     e.preventDefault();
     // console.log(form);
+    setBtnDisable(true);
     axios
       .post("/auth/forgot-password", form)
       .then((res) => {
@@ -125,6 +128,7 @@ export default function ResetPassword() {
                   ? "btn btn-enable col-12 py-3"
                   : "btn btn-disable col-12 py-3"
               }
+              disabled={btnDisable}
             >
               Confirm
             </button>

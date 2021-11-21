@@ -25,12 +25,12 @@ export default function Sidebar(props) {
 
   const toDashboardPage = () => {
     handleChangePage("menu1");
-    router.push("/home/dasboard");
+    router.push("/dashboard");
   };
 
   const toTransverPage = () => {
     handleChangePage("menu2");
-    router.push("/home/transfer?search=&page=1");
+    router.push("/transfer?search=&page=1");
   };
 
   const toProfile = () => {
@@ -125,7 +125,7 @@ export default function Sidebar(props) {
         </Modal.Footer>
       </Modal>
 
-      <div className="side-box rp col-lg-3">
+      <div className="side-box rp d-none d-lg-block col-lg-3">
         <div className="side-content d-flex flex-column justify-content-between py-lg-5 pe-lg-4">
           <div>
             <div

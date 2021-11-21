@@ -92,7 +92,11 @@ function ProfileComp(props) {
           <img
             src={
               dataUserLogin.image
-                ? `http://localhost:3001/uploads/${dataUserLogin.image}`
+                ? `${
+                    process.env.STATUS === "dev"
+                      ? process.env.BE_DEV
+                      : process.env.BE_PROD
+                  }/uploads/${dataUserLogin.image}`
                 : "/assets/image/default-profile.jpg"
             }
             alt=""
@@ -118,7 +122,7 @@ function ProfileComp(props) {
           </div>
 
           <div className="col-12 d-flex align-items-center justify-content-center">
-            <div className="menuEditProfile col-6 my-4 ">
+            <div className="menuEditProfile col-lg-6 col-12 my-4 ">
               <div
                 onClick={() => router.push("/home/profile/personal-info")}
                 className="hover-pointer edit-menu__personal-info my-4 rds-10 p-3 bg-8ed d-flex justify-content-between align-items-center"
