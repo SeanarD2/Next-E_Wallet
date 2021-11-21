@@ -10,7 +10,8 @@
   border-color: rgb(198, 197, 202);
 }
 .pagination > .pagination__active > a {
-  background-color: #5f2eea;
+  background-color: #6379f4;
+
   /* border-color: #47ccde; */
   color: #fff !important;
 }
@@ -30,8 +31,8 @@
 .pagination > .pagination__active > span:hover,
 .pagination > .pagination__active > a:focus,
 .pagination > .pagination__active > span:focus {
-  background-color: #5f2eea;
-  border-color: #5f2eea;
+  background-color: #6379f4;
+  border-color: #6379f4;
   outline: none;
   border-radius: 25%;
   /* color: white; */
@@ -46,5 +47,5 @@
 .pagination > li:last-child > a,
 .pagination > li:last-child > span {
   border-radius: unset;
-  background: #f5f6f8 !important;
+  background: #fafcff !important;
 }

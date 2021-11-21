@@ -59,6 +59,12 @@ function ChangeNewPin(props) {
       })
       .catch((err) => {
         setBtnDisable(false);
+        document.getElementById(`pin-1`).value = "";
+        document.getElementById(`pin-2`).value = "";
+        document.getElementById(`pin-3`).value = "";
+        document.getElementById(`pin-4`).value = "";
+        document.getElementById(`pin-5`).value = "";
+        document.getElementById(`pin-6`).value = "";
 
         toast.error(err.response.data.msg);
       });

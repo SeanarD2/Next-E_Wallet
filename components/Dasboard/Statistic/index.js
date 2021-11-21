@@ -42,7 +42,7 @@ function Statistic(props) {
   const [dataHistory, setDataHistory] = useState([]);
   const getTransactionHistory = () => {
     axios
-      .get("/transaction/history?page=1&limit=5&filter=MONTH")
+      .get("/transaction/history?page=1&limit=5&filter=WEEK")
       .then((res) => {
         console.log(res.data.data);
         setDataHistory(res.data.data);
@@ -62,7 +62,7 @@ function Statistic(props) {
       setDataBalance(res.value.data.data);
     });
 
-    props.getTransactionHistory().then((res) => {
+    props.getTransactionHistory({ page: 1, filter: "WEEK" }).then((res) => {
       console.log(res.value.data.data);
     });
   }, []);

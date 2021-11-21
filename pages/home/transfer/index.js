@@ -29,7 +29,8 @@ export async function getServerSideProps(context) {
     .then((res) => {
       // console.log("THEN");
       // console.log("DATA", res.data.data);
-      return res.data.data;
+      console.log(res.data);
+      return { data: res.data.data, pagination: res.data.pagination };
     })
     .catch((err) => {
       // console.log("CATCH");
@@ -37,7 +38,9 @@ export async function getServerSideProps(context) {
       return [];
     });
   return {
-    props: { allUser: allUser },
+    props: {
+      allUser: allUser,
+    },
   };
 }
 
@@ -55,6 +58,49 @@ function Dasboard(props) {
     setItemOffset(newOffset);
   };
 
+  const [page, setPage] = useState(1);
+
+  const handlePagination = (event) => {
+    setPage(event.selected + 1);
+    router.push(
+      `/home/transfer?search=${router.query.search}&page=${event.selected + 1}`
+    );
+  };
+
+  useEffect(() => {
+    props
+      .getAllUser({ search: router.query.search, page: router.query.page })
+      .then((res) => {
+        console.log(res);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }, []);
+
+  useEffect(() => {
+    setPage = router.query.page;
+    props
+      .getAllUser({ search: router.query.search, page: router.query.page })
+      .then((res) => {
+        console.log(res);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }, [router.query.page]);
+
+  useEffect(() => {
+    props
+      .getAllUser({ search: router.query.search, page: 1 })
+      .then((res) => {
+        console.log(res);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }, [router.query.search]);
+
   return (
     <>
       <Layout title="Home | Transfer">
@@ -62,23 +108,22 @@ function Dasboard(props) {
           <div className="row rp">
             <Sidebar activePage="menu2" />
             <div className="row col-lg-9 rp">
-              <SearchReceiver
-                allUser={dataAllUser}
-                getDataAllUser={() => getDataAllUser()}
-              />
+              <SearchReceiver allUser={dataAllUser} page={page} />
             </div>
           </div>
-          <Paginate
-            previousLabel={null}
-            nextLabel={null}
-            breakLabel={"..."}
-            pageCount={props.user.pageInfo.totalPage}
-            onPageChange={(event) => handlePagination(event)}
-            containerClassName={"pagination"}
-            disabledClassName={"pagination__disabled"}
-            activeClassName={"pagination__active"}
-            className="justify-content-center align-items-center"
-          />
+          <div className="justify-content-center d-flex text-center my-5">
+            <Paginate
+              previousLabel={null}
+              nextLabel={null}
+              breakLabel={"..."}
+              pageCount={props.user.pageInfo.totalPage}
+              onPageChange={(event) => handlePagination(event)}
+              containerClassName={"pagination"}
+              disabledClassName={"pagination__disabled"}
+              activeClassName={"pagination__active"}
+              className="justify-content-center pagination d-flex align-items-center"
+            />
+          </div>
         </div>
       </Layout>
     </>

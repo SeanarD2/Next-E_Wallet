@@ -5,7 +5,6 @@ import { getAllUser, getDataReceiver } from "redux/action/user";
 import { connect } from "react-redux";
 
 function SearchReceiver(props) {
-  // console.log(props.allUser, "ALL USER");
   const [allUser, setAllUser] = useState(props.allUser);
 
   const handleSelectedReceiver = (id) => {
@@ -15,16 +14,30 @@ function SearchReceiver(props) {
   };
 
   const [search, setSearch] = useState("");
-  const [page, setPage] = useState(1);
+  const [page, setPage] = useState(props.page);
 
   const handleSearch = (e) => {
     if (e.key === "Enter") {
-      router.push(`/home/transfer?search=${search}`);
-      props.getAllUser({ search: search }).then((res) => {
-        setAllUser(res.value.data.data);
-      });
+      router.push(`/home/transfer?search=${search}&page=${router.query.page}`);
     }
   };
+
+  // useEffect(() => {
+  //   if (router.query.search !== undefined) {
+  //     props
+  //       .getAllUser({ search: router.query.search, page: router.query.page })
+  //       .then((res) => {
+  //         setAllUser(res.value.data.data);
+  //       })
+  //       .catch((err) => {
+  //         setAllUser([]);
+  //       });
+  //   }
+  // }, [router.query]);
+
+  useEffect(() => {
+    setAllUser(props.user.dataAllUser);
+  }, [props.user.dataAllUser]);
 
   return (
     <div className="col-12 rpr">
@@ -45,7 +58,7 @@ function SearchReceiver(props) {
           ></input>
         </div>
         <div className="my-5">
-          {allUser ? (
+          {allUser.length > 0 ? (
             allUser.map((item, index) => (
               <div
                 key={index}
@@ -77,7 +90,9 @@ function SearchReceiver(props) {
               </div>
             ))
           ) : (
-            <h1>TEST</h1>
+            <div className="text-center">
+              <h3>Can`t Find Another User</h3>
+            </div>
           )}
         </div>
       </div>

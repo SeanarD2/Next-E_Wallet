@@ -10,7 +10,9 @@ export const getIncomeExpense = (data) => {
 export const getTransactionHistory = (data) => {
   return {
     type: "GET_TRANSACTION_HISTORY",
-    payload: axios.get("/transaction/history?page=1&limit=5&filter=MONTH"),
+    payload: axios.get(
+      `/transaction/history?page=${data.page}&limit=5&filter=${data.filter}`
+    ),
   };
 };
 
