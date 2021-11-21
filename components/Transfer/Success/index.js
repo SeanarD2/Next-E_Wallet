@@ -5,6 +5,7 @@ import { setTransferData, checkPin } from "redux/action/transaction";
 import moment from "moment";
 import { ToastContainer, toast } from "react-toastify";
 import { getDataUser } from "redux/action/user";
+import axios from "utils/axios";
 
 function TransferSuccess(props) {
   const { dataReceiver } = props;
@@ -18,8 +19,17 @@ function TransferSuccess(props) {
 
   const backToHome = () => {
     props.getDataUser(props.user.dataUserLogin.id).then((res) => {
-      router.push("/home/dasboard");
+      // router.push("/home/dasboard");
     });
+  };
+
+  const exportTrans = () => {
+    axios
+      .get(`export/transaction/${props.transaction.transferDataSuccess.id}`)
+      .then((res) => {
+        console.log(res.data.data.url);
+        window.open(res.data.data.url, `_blank`);
+      });
   };
 
   return (
@@ -98,7 +108,17 @@ function TransferSuccess(props) {
             <div className="text-center">
               <div className="d-flex justify-content-end">
                 <button
-                  className={"btn-enable px-5 py-3 rds-12 mt-2 fw-700 fs-18"}
+                  className={
+                    "btn-export color-prim px-5 py-3 mx-2 rds-12 mt-2 fw-700 fs-18"
+                  }
+                  onClick={() => exportTrans()}
+                >
+                  Download PDF
+                </button>
+                <button
+                  className={
+                    "btn-enable px-5 py-3 mx-2 rds-12 mt-2 fw-700 fs-18"
+                  }
                   onClick={() => backToHome()}
                 >
                   Back To Home

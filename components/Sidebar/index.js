@@ -7,6 +7,7 @@ import LogoutSVG from "components/SVG/LogoutSVG";
 import Link from "next/link";
 import router from "next/router";
 import Cookie from "js-cookie";
+import { Modal, Button } from "react-bootstrap";
 
 export default function Sidebar(props) {
   const [active, setActive] = useState(props.activePage);
@@ -39,6 +40,11 @@ export default function Sidebar(props) {
     router.push("/login");
   };
 
+  const handleTopUp = () => {
+    handleChangePage("menu3");
+    handleShow();
+  };
+
   const mouseOver = (page) => {
     setHover(page);
   };
@@ -46,8 +52,41 @@ export default function Sidebar(props) {
   const mouseOut = () => {
     setHover("");
   };
+
+  const [show, setShow] = useState(false);
+  const handleClose = () => setShow(false);
+  const handleShow = () => setShow(true);
+
   return (
     <>
+      <Modal
+        show={show}
+        onHide={handleClose}
+        // style={{ borderRadius: "25% !important" }}
+        style={{ top: "10%", bottom: "10%" }}
+        className="modal-confirm-pin"
+      >
+        <div className="p-3 rds-25p">
+          <Modal.Header closeButton style={{ borderBottom: "none" }}>
+            <div className="fw-700 fs-16">Enter PIN to Transfer</div>
+          </Modal.Header>
+          <Modal.Body style={{ borderBottom: "none" }}>
+            <div className="fw-400 col-8 color-gray5b">
+              Enter the amount of money, and click submit
+            </div>
+            <input className="input-gray text-center px-5 py-2 mt-5 fs-24 color-prim fw-600"></input>
+          </Modal.Body>
+          <Modal.Footer style={{ borderTop: "none" }}>
+            <button
+              className="px-5 btn-enable rds-12 py-3"
+              variant="primary"
+              onClick={(event) => cekPin(event)}
+            >
+              Submit
+            </button>
+          </Modal.Footer>
+        </div>
+      </Modal>
       <div className="side-box col-lg-3">
         <div className="side-content d-flex flex-column justify-content-between py-lg-5 px-lg-4">
           <div>
@@ -107,7 +146,7 @@ export default function Sidebar(props) {
             </div>
             <div
               className="hover-pointer side-content__topup mb-5 d-flex align-items-center"
-              onClick={() => handleChangePage("menu3")}
+              onClick={() => handleTopUp()}
               onMouseOver={() => mouseOver("menu3")}
               onMouseOut={() => mouseOut("menu3")}
             >

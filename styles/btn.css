@@ -15,3 +15,10 @@
   color: #ffffff !important;
   border: none;
 }
+
+.btn-export {
+  background-color: rgba(99, 121, 244, 0.15) !important;
+
+  color: #6379f4 !important;
+  border: none;
+}

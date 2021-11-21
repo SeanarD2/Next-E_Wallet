@@ -27,7 +27,7 @@ export default function ProfilUser(props) {
 
   return (
     <>
-      <Layout title="Dashboard | History">
+      <Layout title="Home | Profile">
         <div className="container">
           <div className="row rp">
             <Sidebar activePage="menu4" />

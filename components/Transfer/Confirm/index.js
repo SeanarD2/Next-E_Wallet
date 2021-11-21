@@ -57,6 +57,7 @@ function Confirm(props) {
         props
           .doTransfer(props.transaction.transferData)
           .then((res) => {
+            console.log(res.value);
             router.push(
               "/home/transfer/success",
               props.transaction.transferData

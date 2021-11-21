@@ -2,6 +2,7 @@ const initialScale = {
   dashboard: {},
   history: [],
   transferData: {},
+  transferDataSuccess: {},
 
   isLoading: false,
   isError: false,
@@ -91,6 +92,7 @@ const transaction = (state = initialScale, action) => {
     case "TRANSFER_FULFILLED": {
       return {
         ...state,
+        transferDataSuccess: action.payload.data.data,
       };
     }
     case "TRANSFER_REJECTED": {
