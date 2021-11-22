@@ -11,7 +11,7 @@ function Header(props) {
           <img
             src="/assets/image/home/Zwallet.png"
             alt="Z-Wallet Logo"
-            className="header-logo"
+            className="header-logo d-none d-lg-block"
           />
           <div className="header__user-info">
             <div className="user-img">

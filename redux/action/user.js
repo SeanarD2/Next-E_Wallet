@@ -25,7 +25,7 @@ export const getAllUser = (data) => {
   return {
     type: "GET_ALL_USER",
     payload: axios.get(
-      `/user?page=${data.page}&limit=3&search=${data.search}&sort=`
+      `/user?page=${data.page}&limit=3&search=${data.search}&sort=${data.sort}`
     ),
   };
 };

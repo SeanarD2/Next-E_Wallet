@@ -20,11 +20,17 @@ function SearchReceiver(props) {
   const handleSearch = (e) => {
     if (e.key === "Enter") {
       router.push(
-        `/transfer?search=${search}&page=${
-          router.query.page ? router.query.page : 1
+        `/transfer?search=${search}&page=${1}&sort=${
+          router.query.sort ? router.query.sort : ""
         }`
       );
     }
+  };
+
+  const handleSort = (event) => {
+    router.push(
+      `/transfer?search=${router.query.search}&=page=1&sort=${event.target.value}`
+    );
   };
 
   useEffect(() => {
@@ -37,7 +43,21 @@ function SearchReceiver(props) {
         className="search-receiver__label rds-20 sec-card p-4 p-lg-4"
         style={{ height: "100%", minHeight: "600px" }}
       >
-        <span className="fs-18 fw-700 col-12">Search Receiver</span>
+        <div className="col-12 d-flex justify-content-between align-items-center row">
+          <span className="fs-18 fw-700 col-12 col-lg-4 mb-4 mb-lg-0">
+            Search Receiver
+          </span>
+          <select
+            className="fs-14 fw-400 rds-12 col-12 col-lg-4 py-2"
+            onChange={(event) => handleSort(event)}
+          >
+            <option value="">Select Sort By</option>
+            <option value="firstName ASC">First Name ASC</option>
+            <option value="firstName DESC">First Name DESC</option>
+            <option value="noTelp ASC">Phone Number ASC</option>
+            <option value="noTelp DESC">Phone Number DESC</option>
+          </select>
+        </div>
         <div className="mt-4 py-lg-2 py-2 px-3 px-lg-3 col-12 search-receiver__input d-flex align-items-center">
           <img src="/assets/image/search.svg" alt="search" className="me-3" />
           <input

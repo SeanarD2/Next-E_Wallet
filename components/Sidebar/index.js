@@ -125,7 +125,7 @@ export default function Sidebar(props) {
         </Modal.Footer>
       </Modal>
 
-      <div className="side-box rp d-none d-lg-block col-lg-3">
+      <div className="side-box rp d-none lg-12 d-lg-block col-lg-3">
         <div className="side-content d-flex flex-column justify-content-between py-lg-5 pe-lg-4">
           <div>
             <div
@@ -286,6 +286,67 @@ export default function Sidebar(props) {
               Logout
             </span>
           </div>
+        </div>
+      </div>
+
+      <div className="side-box-sm rp d-block d-lg-none mb-3 col-lg-3">
+        <div className="side-content d-flex flex-row  p-4 justify-content-between py-lg-5 pe-lg-4">
+          <span onClick={() => toDashboardPage()}>
+            <GridSVG
+              color={
+                active === "menu1"
+                  ? "#6379F4"
+                  : hover === "menu1"
+                  ? "#8591d4"
+                  : "rgba(58, 61, 66, 0.8)"
+              }
+            />
+          </span>
+
+          <span onClick={() => toTransverPage()}>
+            <ArrowUpSVG
+              color={
+                active === "menu2"
+                  ? "#6379F4"
+                  : hover === "menu2"
+                  ? "#8591d4"
+                  : "rgba(58, 61, 66, 0.8)"
+              }
+            />
+          </span>
+          <span onClick={() => handleTopUp()}>
+            <PlusSVG
+              color={
+                active === "menu3"
+                  ? "#6379F4"
+                  : hover === "menu3"
+                  ? "#8591d4"
+                  : "rgba(58, 61, 66, 0.8)"
+              }
+            />
+          </span>
+          <span onClick={() => toProfile()}>
+            <UserSVG
+              color={
+                active === "menu4"
+                  ? "#6379F4"
+                  : hover === "menu4"
+                  ? "#8591d4"
+                  : "rgba(58, 61, 66, 0.8)"
+              }
+            />
+          </span>
+          <span onClick={() => setShowOut()}>
+            <LogoutSVG
+              color={
+                active === "menu5"
+                  ? "#6379F4"
+                  : hover === "menu5"
+                  ? "#8591d4"
+                  : "rgba(58, 61, 66, 0.8)"
+              }
+            />
+          </span>
         </div>
       </div>
     </>

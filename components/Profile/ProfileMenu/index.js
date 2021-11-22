@@ -61,7 +61,7 @@ function ProfileComp(props) {
           style={{ top: "25%", bottom: "25%" }}
         >
           <Modal.Header closeButton>
-            <Modal.Title>Modal heading</Modal.Title>
+            <Modal.Title>Update Profile Picture</Modal.Title>
           </Modal.Header>
           <Modal.Body>
             <form>
@@ -84,7 +84,7 @@ function ProfileComp(props) {
           </Modal.Footer>
         </Modal>
       </div>
-      <div className="rpr">
+      <div className="ps-0 ps-lg-3">
         <div
           className="profile-menu__cont  text-center bg-white rpr p-4"
           style={{ height: "100%" }}
