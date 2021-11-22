@@ -74,7 +74,7 @@ function SearchReceiver(props) {
             allUser.map((item, index) => (
               <div
                 key={index}
-                className="hover-pointer history-list d-flex align-items-center my-5 sec-card p-3 p-lg-4"
+                className="hover-pointer history-list d-flex align-items-center my-4 sec-card p-3 p-lg-4"
                 onClick={() => handleSelectedReceiver(item.id)}
               >
                 <div className="history-list__image-user">
