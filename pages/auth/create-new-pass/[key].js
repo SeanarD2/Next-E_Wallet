@@ -37,7 +37,6 @@ export default function CreateNewPass(props) {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    // console.log(form);
     setBtnDisable(true);
     axios
       .patch("/auth/reset-password", form)
@@ -48,8 +47,8 @@ export default function CreateNewPass(props) {
         }, 3000);
       })
       .catch((err) => {
-        toast.error(err.response.data.msg);
         setBtnDisable(false);
+        toast.error(err.response.data.msg);
       });
   };
 

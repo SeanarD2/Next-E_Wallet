@@ -2,7 +2,8 @@ module.exports = {
   reactStrictMode: true,
   env: {
     STATUS: "dev",
-    BE_DEV: "http://localhost:3001",
+    // BE_DEV: "http://localhost:3001",
+    BE_DEV: "https://zwalet.herokuapp.com",
     BE_PROD: "https://jsonplaceholder.typicode.com/",
   },
   async rewrites() {

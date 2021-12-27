@@ -42,9 +42,7 @@ export async function getServerSideProps(context) {
 
 function Dasboard(props) {
   // console.log(props.allUser);
-  const [totalPage, setTotalPage] = useState(
-    props.allUser.pagination.totalPage
-  );
+  const [totalPage, setTotalPage] = useState(1);
   const [dataAllUser, setDataAllUser] = useState(props.allUser.data);
   const router = useRouter();
   console.log(router.query);

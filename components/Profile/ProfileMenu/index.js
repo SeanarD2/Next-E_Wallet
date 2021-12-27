@@ -84,7 +84,7 @@ function ProfileComp(props) {
           </Modal.Footer>
         </Modal>
       </div>
-      <div className="ps-0 ps-lg-3">
+      <div className="p-0 ps-lg-3">
         <div
           className="profile-menu__cont  text-center bg-white rpr p-4"
           style={{ height: "100%" }}

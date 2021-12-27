@@ -1,29 +1,61 @@
 import Head from "next/head";
 import Image from "next/image";
-import styles from "../styles/Home.module.css";
-import Navbar from "../components/module/Navbar";
-import Layout from "../components/Layout";
+import styles from "../../../styles/Home.module.css";
+import Navbar from "../../../components/module/Navbar";
+import Layout from "../../../components/Layout";
 import { getDataCookie } from "middleware/authPage";
 
-export async function getServerSideProps(context) {
-  const dataCookie = await getDataCookie(context);
+export const getStaticPaths = async () => {
+  const data = [
+    {
+      name: "Andreas",
+      text: "“I use this app since 2 years ago and this is the best app that I’ve ever use in my entire life”",
+    },
+    {
+      name: "Jessica",
+      text: "“I use Zwallet to manage all financial needs. It’s super easy to use and it’s 100% free app”",
+    },
+    {
+      name: "Robert",
+      text: "“Since I’m using this app, I’m not going to move to another similar app. Thank you Zwallet!”",
+    },
+  ];
 
-  // return {
-  //   redirect: {
-  //     destination: "/",
-  //     permanent: false,
-  //   },
-  // };
+  const paths = data.map((item) => {
+    return {
+      params: { name: item.name },
+    };
+  });
 
   return {
-    props: {},
+    paths,
+    fallback: false,
   };
-}
+};
+
+export const getStaticProps = async (context) => {
+  const name = context.params.name;
+  const data = [
+    {
+      name: "Andreas",
+      text: "“I use this app since 2 years ago and this is the best app that I’ve ever use in my entire life”",
+    },
+    {
+      name: "Jessica Mera",
+      text: "“I use Zwallet to manage all financial needs. It’s super easy to use and it’s 100% free app”",
+    },
+    {
+      name: "Robert Chandler",
+      text: "“Since I’m using this app, I’m not going to move to another similar app. Thank you Zwallet!”",
+    },
+  ];
+
+  return {
+    props: { data },
+  };
+};
 
 export default function Home(props) {
-  console.log("====================================");
-  console.log(props);
-  console.log("====================================");
   return (
     <div className={styles.container}>
       <section className="landing-section">
@@ -87,34 +119,14 @@ export default function Home(props) {
             free to use by all users around the world.
           </p>
           <div className="userSaid row">
-            <div className="col-4">
-              <div className="p-5">
-                <h4>24/7 Support</h4>
-
-                <p>
-                  We have 24/7 contact support so you can contact us whenever
-                  you want and we will respond it.
-                </p>
+            {props.data.map((item, index) => (
+              <div key={index} className="col-4">
+                <div className="p-5">
+                  <h4>{item.name}</h4>
+                  <p>{item.text}</p>
+                </div>
               </div>
-            </div>
-            <div className="col-4">
-              <div className="p-5">
-                <h4>Data Privacy</h4>
-                <p>
-                  We make sure your data is safe in our database and we will
-                  encrypt any data you submitted to us.
-                </p>
-              </div>
-            </div>
-            <div className="col-4">
-              <div className="p-5">
-                <h4>Easy Download</h4>
-                <p>
-                  Zwallet is 100% totally free to use it’s now available on
-                  Google Play Store and App Store.
-                </p>
-              </div>
-            </div>
+            ))}
           </div>
         </div>
       </section>

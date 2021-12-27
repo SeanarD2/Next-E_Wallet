@@ -61,7 +61,7 @@ function AddPhoneNumber(props) {
   };
 
   return (
-    <div className="rpr">
+    <div className=" p-0 ps-lg-3">
       <ToastContainer />
       <div
         className="profile-menu__cont  bg-white rpr p-4"
@@ -77,7 +77,7 @@ function AddPhoneNumber(props) {
         <form>
           <div className="col-12 row d-flex justify-content-center mt-5">
             <div
-              className="col-7 d-flex justify-content-center align-items-center pb-2 my-4"
+              className="col-lg-7 col-12 d-flex justify-content-center align-items-center pb-2 my-4"
               style={{ borderBottom: "1.5px solid #A9A9A999" }}
             >
               <img
@@ -108,8 +108,8 @@ function AddPhoneNumber(props) {
             <button
               className={
                 btnDisable
-                  ? "btn-disable col-7 px-5 py-3 rds-12 mt-5"
-                  : "btn-enable col-7 px-5 py-3 rds-12 mt-5"
+                  ? "btn-disable col-lg-7 col-12 px-5 py-3 rds-12 mt-5"
+                  : "btn-enable col-lg-7 col-12 px-5 py-3 rds-12 mt-5"
               }
               onClick={(event) => handleSubmit(event)}
               disabled={btnDisable}

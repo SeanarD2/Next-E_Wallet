@@ -1,24 +1,9 @@
 import Head from "next/head";
 import Image from "next/image";
-import styles from "../styles/Home.module.css";
-import Navbar from "../components/module/Navbar";
-import Layout from "../components/Layout";
+import styles from "../../styles/Home.module.css";
+import Navbar from "../../components/module/Navbar";
+import Layout from "../../components/Layout";
 import { getDataCookie } from "middleware/authPage";
-
-export async function getServerSideProps(context) {
-  const dataCookie = await getDataCookie(context);
-
-  // return {
-  //   redirect: {
-  //     destination: "/",
-  //     permanent: false,
-  //   },
-  // };
-
-  return {
-    props: {},
-  };
-}
 
 export default function Home(props) {
   console.log("====================================");

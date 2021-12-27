@@ -87,7 +87,7 @@ function CreatePin(props) {
         <title>Z-Wallet | Create Pin</title>
       </Head>
       <div className="container-fluid d-flex rp">
-        <div className="login-left-side d-flex justify-content-center">
+        <div className="login-left-side d-lg-flex d-none justify-content-center">
           <div className="color-white login-left-side__content">
             <h3>Zwallet</h3>
             <img src="../assets/image/loginPage/2phone.png" />
@@ -101,7 +101,10 @@ function CreatePin(props) {
           </div>
         </div>
 
-        <div className="login-right-side pr-lg-5  p-lg-5 text-start">
+        <div className="login-right-side pr-lg-5 p-4 p-lg-5 text-start">
+          <div className="text-center d-block d-lg-none my-4">
+            <img src="/assets/image/home/Zwallet.png" alt="" />
+          </div>
           <h3 className="text-start f-nunito-sans fs-24 fw-700 login-title my-4 right-side__text-header">
             Start Accessing Banking Needs With All Devices and All Platforms
             With 30.000+ Users

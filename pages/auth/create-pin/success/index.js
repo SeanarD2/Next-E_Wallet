@@ -87,7 +87,7 @@ function CreatePin(props) {
         <title>Z-Wallet | Create Pin</title>
       </Head>
       <div className="container-fluid d-flex rp">
-        <div className="login-left-side d-flex justify-content-center">
+        <div className="login-left-side d-lg-flex d-none justify-content-center">
           <div className="color-white login-left-side__content">
             <h3>Zwallet</h3>
             <img src="/assets/image/loginPage/2phone.png" />
@@ -101,26 +101,27 @@ function CreatePin(props) {
           </div>
         </div>
 
-        <div className="login-right-side pr-lg-5  p-lg-5 text-start" >
-          <div className="col-10">
+        <div className="login-right-side pr-lg-5 p-4 p-lg-5 text-start">
+          <div className="col-12 col-lg-10">
             <div className="check d-flex justify-content-center align-items-center my-5">
               <img src="/assets/image/check.png" alt="" />
             </div>
-          <h3 className="text-start f-nunito-sans fs-24 fw-700 login-title my-4 right-side__text-header">
-            Your PIN Was Successfully Created
-          </h3>
-          <p className="my-4 fs-16 fw-400 lh-35 color-gray99">
-            Your PIN was successfully created and you can now access all the
-            features in Zwallet. Login to your new account and start exploring!
-          </p>
-          <button
+            <h3 className="text-start f-nunito-sans fs-24 fw-700 login-title my-4 right-side__text-header">
+              Your PIN Was Successfully Created
+            </h3>
+            <p className="my-4 fs-16 fw-400 lh-35 color-gray99">
+              Your PIN was successfully created and you can now access all the
+              features in Zwallet. Login to your new account and start
+              exploring!
+            </p>
+            <button
               type="submit"
-              className= "btn btn-enable col-12 py-3 rds-12 mt-5"
+              className="btn btn-enable col-12 py-3 rds-12 mt-5"
               onClick={() => router.push("/login")}
             >
               Login Now
             </button>
-        </div>
+          </div>
         </div>
       </div>
     </>

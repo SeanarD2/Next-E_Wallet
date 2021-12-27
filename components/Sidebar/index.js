@@ -75,6 +75,14 @@ export default function Sidebar(props) {
     });
   };
 
+  const formatRupiah = (number) => {
+    return new Intl.NumberFormat("id-ID", {
+      maximumSignificantDigits: 4,
+      currency: "IDR",
+      style: "currency",
+    }).format(number);
+  };
+
   return (
     <>
       <Modal
@@ -86,14 +94,16 @@ export default function Sidebar(props) {
       >
         <div className="p-3 rds-25p">
           <Modal.Header closeButton style={{ borderBottom: "none" }}>
-            <div className="fw-700 fs-16">Enter PIN to Transfer</div>
+            <div className="fw-700 fs-16">TopUp</div>
           </Modal.Header>
           <Modal.Body style={{ borderBottom: "none" }}>
             <div className="fw-400 col-8 color-gray5b">
               Enter the amount of money, and click submit
             </div>
             <input
-              value={amount}
+              // value={formatRupiah(amount)}
+              placeholder="Rp. 0"
+              value={`${amount}`}
               onChange={(event) => setAmount(event.target.value)}
               className="input-gray text-center px-5 py-2 mt-5 fs-24 color-prim fw-600"
             ></input>

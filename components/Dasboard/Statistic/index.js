@@ -71,7 +71,7 @@ function Statistic(props) {
   }, []);
 
   return (
-    <div className="statistic-out row rpr mt-3">
+    <div className="statistic-out row p-0 ps-lg-3 mt-3">
       <div className="statistic-box row p-4 col-lg-7 col-12 d-flex justify-content-between">
         <div className="col-12 d-flex justify-content-between">
           <div className="statistic-income">

@@ -38,7 +38,7 @@ function PersonalInfo(props) {
   };
 
   return (
-    <div className="rpr">
+    <div className="p-0 ps-lg-3">
       <ToastContainer />
       <div
         className="profile-menu__cont  bg-white rpr p-4"

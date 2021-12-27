@@ -13,7 +13,7 @@ export default function Footer() {
         </div>
       </div>
 
-      <div className="footer-container py-3 d-block d-lg-none">
+      <div className="footer-container py-3 px-3 d-block d-lg-none">
         <div className="my-2">2020 Zwallet. All right reserved.</div>
         <div className="my-2">+62 5637 8882 9901</div>
         <div className="my-2">andreas@zwallet.com</div>

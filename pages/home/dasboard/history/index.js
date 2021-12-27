@@ -183,6 +183,7 @@ function DasboardHistory(props) {
           disabledClassName={"pagination__disabled"}
           activeClassName={"pagination__active"}
           className="justify-content-center pagination d-flex align-items-center"
+          pageRangeDisplayed={5}
         />
       </Layout>
     </>

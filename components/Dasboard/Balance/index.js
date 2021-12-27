@@ -31,7 +31,7 @@ function Balance(props) {
   }).format(intBalance);
 
   return (
-    <div className="balance-out col-12 col-lg-12 rpr ">
+    <div className="balance-out col-12 col-lg-12 p-0 ps-lg-3 ">
       <div className="ml-1 p-4 p-lg-4 balance-box row">
         <div className="col-lg-9 d-flex flex-column justify-content-between color-white">
           <span className="fs-18 fw-400">Balance</span>
