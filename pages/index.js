@@ -4,6 +4,7 @@ import styles from "../styles/Home.module.css";
 import Navbar from "../components/module/Navbar";
 import Layout from "../components/Layout";
 import { getDataCookie } from "middleware/authPage";
+import { useRouter } from "next/router";
 
 export async function getServerSideProps(context) {
   const dataCookie = await getDataCookie(context);
@@ -21,6 +22,7 @@ export async function getServerSideProps(context) {
 }
 
 export default function Home(props) {
+  const router = useRouter();
   console.log("====================================");
   console.log(props);
   console.log("====================================");
@@ -33,7 +35,12 @@ export default function Home(props) {
             We bring you a mobile app for banking problems that
             <br /> oftenly wasting much of your times.
           </p>
-          <span className="landing-white-button">Try it for free</span>
+          <span
+            onClick={() => router.push("/login")}
+            className="landing-white-button hover-pointer"
+          >
+            Try it for free
+          </span>
         </div>
       </section>
       <section className="landing-section">

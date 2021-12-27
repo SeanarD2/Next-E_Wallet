@@ -22,19 +22,33 @@ function Statistic(props) {
   const [labelExpense, setLabelExpense] = useState([]);
   const [listExpense, setListExpense] = useState([]);
   const [listIncome, setListIncome] = useState([]);
+  const [labelIncome, setLabelIncome] = useState([]);
+
+  useEffect(() => {
+    console.log(labelIncome);
+  }, [labelIncome]);
 
   // CHART CONFIG
   const data = {
-    labels: [],
+    labels: [...labelIncome],
 
     datasets: [
       {
+        id: 1,
         label: "Income This Week",
-        data: [],
+        data: [...listIncome],
         fill: false,
         backgroundColor: ["rgba(255, 99, 132, 0.2)", "rgba(54, 162, 235, 0.2)"],
         borderColor: ["rgba(255, 99, 132, 1)", "rgba(54, 162, 235, 1)"],
       },
+      // {
+      //   id: 2,
+      //   label: "Income This Week",
+      //   data: [...listExpense],
+      //   fill: false,
+      //   backgroundColor: ["rgba(255, 99, 132, 0.2)", "rgba(54, 162, 235, 0.2)"],
+      //   borderColor: ["rgba(255, 99, 132, 1)", "rgba(54, 162, 235, 1)"],
+      // },
     ],
   };
 
@@ -60,6 +74,27 @@ function Statistic(props) {
     props.getIncomeExpense(dataUserLogin.id).then((res) => {
       console.log(res.value.data.data);
       setDataBalance(res.value.data.data);
+      console.log("income Expense =>", res.value.data.data);
+
+      let labelNewIncome = [];
+      let newIncome = [];
+      let labelNewExpense = [];
+      let newExpense = [];
+      res.value.data.data.listIncome.map((item) => {
+        newIncome.push(item.total);
+        labelNewIncome.push(item.day);
+        console.log(item.day, item.total);
+      });
+      res.value.data.data.listExpense.map((item) => {
+        newExpense.push(item.total);
+        labelNewExpense.push(item.day);
+        console.log(item.day, item.total);
+      });
+
+      setLabelIncome(labelNewIncome);
+      setLabelExpense(labelNewExpense);
+      setListExpense(newExpense);
+      setListIncome(newIncome);
     });
 
     props
@@ -131,7 +166,7 @@ function Statistic(props) {
                     </div>
                     <div className="history-list__details-user d-flex flex-column justify-content-evenly">
                       <span className="fw-700 fs-16 text-truncate ">
-                        {`${item.firstName} ${item.lastName}`}
+                        {`${item.firstName}`}
                       </span>
                       <span className="fw-400 fs-14">
                         {item.type === "send"
