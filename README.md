@@ -83,12 +83,12 @@ ZWallet</a>
 ## About The Project
 
 <center>
-<img src="./image/1.jpg"></img>
+<img src="./images/1.jpg"></img>
 <!-- [landing page] -->
 
 <br>
 <br>
-<img src="./image/2.jpg"></img>
+<img src="./images/2.jpg"></img>
 <!-- [movie list] -->
 
 </center>
