@@ -36,12 +36,21 @@ axios.interceptors.response.use(
     // Any status codes that falls outside the range of 2xx cause this function to trigger
     // Do something with response error
     if (error.response.status === 403) {
-      Cookie.remove("token");
-      Cookie.remove("id");
-
       if (Cookie.get("token")) {
-        alert(error.response.data.msg);
-        window.location.href = "/login";
+        axios
+          .post(`user/refresh`, { rToken: Cookie.get("refresh") })
+          .then((res) => {
+            Cookie.set("token", res.value.data.data.token);
+            Cookie.set("id", res.value.data.data.id);
+            Cookie.set("refresh", res.value.data.data.token);
+          })
+          .catch((err) => {
+            console.log(err.response);
+            Cookie.remove("token");
+            Cookie.remove("id");
+            Cookie.remove("refresh");
+            window.location.href = "/login";
+          });
       }
     }
     return Promise.reject(error);

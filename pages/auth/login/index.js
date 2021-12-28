@@ -43,6 +43,7 @@ function Login(props) {
         console.log(res);
         Cookie.set("token", res.value.data.data.token);
         Cookie.set("id", res.value.data.data.id);
+        Cookie.set("refresh", res.value.data.data.token);
 
         props
           .getDataUser(Cookie.get("id"))
